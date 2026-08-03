@@ -1,3 +1,17 @@
+---
+title: "An Essay on Organizational Coherence"
+subtitle: "A Practical Philosophy for Aligning Strategy, Capabilities and Execution"
+description: "An exploration of coherence as a dynamic condition in organizations — arguing that aligning strategic promises with operational capabilities must be continuously earned, not simply achieved."
+author: "Paulo Eduardo Pereira"
+date: 2026-07-02
+language: "en"
+type: "essay"
+tags: ["coherence", "strategy", "capability", "organization", "execution"]
+status: "published"
+translationId: "essay-01-organizational-coherence"
+series: "Foundations of Coherence"
+---
+
 # An Essay on Organizational Coherence
 
 _A practical philosophy for aligning strategy, capabilities and execution_

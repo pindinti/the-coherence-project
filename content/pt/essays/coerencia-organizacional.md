@@ -1,3 +1,17 @@
+---
+title: "Um Ensaio sobre Coerência Organizacional"
+subtitle: "Uma Filosofia Prática para Alinhar Estratégia, Capacidades e Execução"
+description: "Uma exploração da coerência como condição dinâmica nas organizações — a tese de que alinhar promessas estratégicas com capacidades operacionais é algo que precisa ser continuamente conquistado, não simplesmente alcançado."
+author: "Paulo Eduardo Pereira"
+date: 2026-07-02
+language: "pt"
+type: "essay"
+tags: ["coerencia-organizacional", "estrategia", "capacidade", "organizacao", "execucao"]
+status: "published"
+translationId: "essay-01-organizational-coherence"
+series: "Fundamentos da Coerência"
+---
+
 # Um Ensaio sobre Coerência Organizacional
 
 _Uma filosofia prática para alinhar estratégia, capacidades e execução_
