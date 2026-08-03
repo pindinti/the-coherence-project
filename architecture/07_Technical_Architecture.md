@@ -93,30 +93,26 @@ the-coherence-project/
 
 ├── README.md
 │
-├── docs/
-│   ├── product/
-│   ├── content/
-│   ├── design/
-│   └── technical/
+├── architecture/
 │
 ├── content/
 │   ├── en/
 │   │   ├── essays/
 │   │   ├── articles/
 │   │   ├── journal/
+│   │   ├── research/
 │   │   └── pages/
 │   │
 │   └── pt/
-│       ├── ensaios/
-│       ├── artigos/
-│       ├── diario/
-│       └── paginas/
+│       ├── essays/
+│       ├── articles/
+│       ├── journal/
+│       ├── research/
+│       └── pages/
 │
 ├── public/
 │
-├── src/
-│
-└── config/
+└── src/
 ```
 
 ---
@@ -125,27 +121,14 @@ the-coherence-project/
 
 Content should be written and maintained as Markdown files.
 
-Each content item should contain structured metadata.
+Each content item contains structured YAML metadata defined by the project's canonical content schema (see **10_Content_Model** for full field definitions, types, and Astro Content Collections configuration).
 
-Example:
-
-```yaml
----
-title:
-author:
-date:
-language:
-type:
-tags:
-status:
----
-```
-
-Metadata should enable:
+Metadata enables:
 
 - Navigation.
 - Search.
 - Filtering.
+- Multilingual linking (`translationId`).
 - Related content.
 
 ---

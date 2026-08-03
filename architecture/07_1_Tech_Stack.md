@@ -131,16 +131,21 @@ The solution should support:
 
 # Frontend
 
+## Technology
+
+- Framework: Astro (Static Site Generation)
+- Styling: Vanilla CSS + CSS Custom Properties (`:root` tokens) + Astro Scoped Styles
+
 ## Requirements
 
 The frontend technology should prioritize:
 
 - Reading experience.
 - Accessibility.
-- Performance.
+- Performance (zero CSS framework overhead).
 - Responsive design.
 
-The technology choice should minimize unnecessary complexity.
+The styling architecture uses design tokens defined in CSS Custom Properties, keeping the project lightweight, portable, and free of heavy utility-first frameworks.
 
 ---
 

@@ -46,8 +46,8 @@ Research drives evolution.
 # Repository Structure
 
 ```text
-docs/
-    Project documentation
+architecture/
+    Project architecture and governance
 
 content/
     Essays, articles, journal entries and pages
@@ -57,9 +57,6 @@ src/
 
 public/
     Static assets
-
-config/
-    Project configuration
 ```
 
 The documentation defines **why** and **how** the project exists.
@@ -143,7 +140,7 @@ The website is only one possible representation of that content.
 
 # Documentation
 
-Project documentation is located in the `docs` directory.
+Project documentation is located in the `architecture` directory.
 
 The recommended reading order is:
 
@@ -173,6 +170,10 @@ The recommended reading order is:
 08 Deployment Workflow
 
 09 Roadmap
+
+10 Content Model
+
+11 URL and Routing Strategy
 ```
 
 Each document builds upon the previous one.

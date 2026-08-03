@@ -136,6 +136,14 @@ The project follows the following order of authority:
 
 ↓
 
+10 Content Model
+
+↓
+
+11 URL and Routing Strategy
+
+↓
+
 Implementation
 ```
 

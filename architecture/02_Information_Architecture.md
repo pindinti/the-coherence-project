@@ -150,7 +150,9 @@ Translations may be adapted for clarity while preserving conceptual accuracy.
 
 The repository organizes content by function rather than technology.
 
-Documentation, research, published content and implementation remain clearly separated.
+Documentation (`architecture/`), research notes, published content (`content/en/` and `content/pt/`) and implementation (`src/`) remain clearly separated.
+
+Content subdirectories follow a uniform English structure (`essays`, `articles`, `journal`, `research`, `pages`) across both languages. Full content schema specification: see **10_Content_Model**.
 
 ---
 

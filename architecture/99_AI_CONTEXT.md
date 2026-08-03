@@ -39,7 +39,7 @@ The objective is to improve understanding.
 
 # The Source of Truth
 
-The project's source of truth is the documentation contained in the `docs` directory.
+The project's source of truth is the documentation contained in the `architecture` directory.
 
 AI should never invent principles that contradict documented decisions.
 
@@ -59,7 +59,9 @@ When making decisions, follow this order of precedence:
 6. Terminology
 7. Design System
 8. Technical Documentation
-9. Implementation
+9. Content Model
+10. URL and Routing Strategy
+11. Implementation
 
 Lower-level decisions must never contradict higher-level documents.
 
