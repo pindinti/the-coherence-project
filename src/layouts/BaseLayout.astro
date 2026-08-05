@@ -1,0 +1,86 @@
+---
+/**
+ * BaseLayout — The Coherence Project
+ *
+ * Base HTML document structure shared by all pages.
+ *
+ * hreflang and canonical tags are rendered ONLY when `Astro.site` is
+ * defined (i.e., the `site` property is set in astro.config.mjs).
+ * This prevents invalid relative-URL references before the definitive
+ * domain is chosen. Architecture ref: 11_URL_and_Routing_Strategy.md
+ */
+
+import '../styles/global.css';
+
+interface Props {
+  /** Page title — rendered in <title> and og:title */
+  title: string;
+  /** Page description — rendered in meta description and og:description */
+  description: string;
+  /** Document language code, e.g. "en" or "pt". Defaults to "en". */
+  lang?: string;
+  /** Path for the English hreflang alternate (e.g. "/en/essays/slug") */
+  hreflangEn?: string;
+  /** Path for the Portuguese hreflang alternate (e.g. "/pt/ensaios/slug") */
+  hreflangPt?: string;
+  /** Canonical URL path (e.g. "/en/essays/slug") */
+  canonical?: string;
+}
+
+const {
+  title,
+  description,
+  lang = 'en',
+  hreflangEn,
+  hreflangPt,
+  canonical,
+} = Astro.props;
+
+// Absolute URLs are constructed only when Astro.site is configured.
+// Until the definitive domain is set in astro.config.mjs via `site`,
+// hreflang and canonical tags are suppressed — not rendered as invalid
+// relative-URL references.
+const site = Astro.site;
+const abs = (path: string): string | null =>
+  site ? new URL(path, site).toString() : null;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Canonical — requires site domain -->
+    {canonical && site && (
+      <link rel="canonical" href={abs(canonical)} />
+    )}
+
+    <!-- hreflang alternates — rendered only when site domain is configured -->
+    {site && hreflangEn && (
+      <link rel="alternate" hreflang="en" href={abs(hreflangEn)} />
+    )}
+    {site && hreflangPt && (
+      <link rel="alternate" hreflang="pt" href={abs(hreflangPt)} />
+    )}
+    {site && (hreflangEn || hreflangPt) && (
+      <link rel="alternate" hreflang="x-default" href={site.toString()} />
+    )}
+
+    <!-- Google Fonts — Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

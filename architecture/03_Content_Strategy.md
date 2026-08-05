@@ -95,6 +95,16 @@ Reading notes, references and open questions may evolve into primary, educationa
 
 ---
 
+## Editorial Assets and Visual Narrative
+
+Diagrams and figures are part of the editorial narrative, not decorative extras. They support the argument, clarify relationships and make complex ideas easier to follow.
+
+Every figure should include a caption and, when appropriate, a reference in the surrounding text. This ensures readers can connect visual material to the argument and maintain narrative flow.
+
+Diagrams belong to the content itself; they should be treated as first-class editorial assets rather than optional decorations.
+
+---
+
 # Publishing Philosophy
 
 Publishing is not an end.

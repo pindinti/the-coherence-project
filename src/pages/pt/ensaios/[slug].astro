@@ -1,0 +1,64 @@
+---
+/**
+ * PT Essay Dynamic Route — /pt/ensaios/[slug]
+ * The Coherence Project
+ *
+ * Gera uma página estática por ensaio publicado na coleção `essays-pt`.
+ * Resolve a tradução correspondente em inglês via `translationId` para
+ * popular o hreflang EN alternate.
+ *
+ * Architecture ref: 11_URL_and_Routing_Strategy.md — Internal Collection vs URL Mapping
+ */
+
+import type { CollectionEntry } from 'astro:content';
+import { getCollection, render } from 'astro:content';
+import EssayLayout from '../../../layouts/EssayLayout.astro';
+
+export async function getStaticPaths() {
+  const essaysPt = await getCollection('essays-pt');
+  const essaysEn = await getCollection('essays-en');
+
+  return essaysPt.map((essay) => {
+    // Strip .md extension to produce the URL slug
+    const slug = essay.id.replace(/\.md$/, '');
+
+    // Locate the matching EN translation via translationId
+    const enMatch = essay.data.translationId
+      ? essaysEn.find((en) => en.data.translationId === essay.data.translationId)
+      : undefined;
+
+    const enSlug = enMatch ? enMatch.id.replace(/\.md$/, '') : undefined;
+
+    return {
+      params: { slug },
+      props: { essay, enSlug },
+    };
+  });
+}
+
+interface Props {
+  essay: CollectionEntry<'essays-pt'>;
+  enSlug?: string;
+}
+
+const { essay, enSlug } = Astro.props;
+const { Content } = await render(essay);
+
+const slug = essay.id.replace(/\.md$/, '');
+const ptPath = `/pt/ensaios/${slug}`;
+// Fall back to EN homepage if no translation is available
+const enPath = enSlug ? `/en/essays/${enSlug}` : '/en/';
+---
+
+<EssayLayout
+  title={essay.data.title}
+  subtitle={essay.data.subtitle}
+  description={essay.data.description}
+  date={essay.data.date}
+  series={essay.data.series}
+  language="pt"
+  hreflangEn={enPath}
+  hreflangPt={ptPath}
+>
+  <Content />
+</EssayLayout>

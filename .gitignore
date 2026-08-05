@@ -141,3 +141,7 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Astro
+# Type generation cache — created by `astro check` and `astro dev`
+.astro/

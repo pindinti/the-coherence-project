@@ -23,6 +23,29 @@ This model forms the contract between Markdown content files in `content/` and t
 
 ---
 
+## Editorial Assets
+
+Editorial assets such as diagrams, illustrations, figures and images are stored in the public assets layer under `public/images/`.
+
+Each content item receives a dedicated folder whose name matches the content slug exactly. For example:
+
+- `public/images/essays/organizational-coherence/`
+- `public/images/essays/coerencia-organizacional/`
+
+Shared assets that are used across multiple content items or languages belong in `public/images/shared/`.
+
+Asset file names should be descriptive and use `kebab-case`. Prefer SVG for diagrams and informational illustrations, and reserve PNG only for images that require raster fidelity.
+
+In Markdown, assets are referenced from the public path. Example:
+
+```markdown
+![Figure 1: Coherence model](/images/essays/organizational-coherence/coherence-model.svg)
+```
+
+When the same image is identical across languages, prefer a single shared asset in `public/images/shared/` instead of duplicating it in parallel content folders.
+
+---
+
 # Directory Structure
 
 Content is organized by language code (`en`, `pt`) and content type using uniform English directory names across all languages.

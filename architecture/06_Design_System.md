@@ -221,6 +221,21 @@ The design adapts to the user, not the opposite.
 
 ---
 
+## Figures and Editorial Media
+
+Figures should respect the reading experience and remain visually integrated with the surrounding text.
+
+- Maximum width should generally not exceed the content measure.
+- Figures should be responsive and scale gracefully on smaller screens.
+- Use generous vertical spacing above and below figures to separate them from text.
+- Captions should be clearly legible, aligned with the figure, and sized slightly smaller than body text.
+- Use formal numbering when appropriate (for example, "Figure 1", "Figure 2" or localized variants like "Figura 1").
+- On mobile, figures should adapt to the viewport width and keep captions visible without requiring horizontal scrolling.
+
+The design system treats figures as narrative components that support comprehension across devices.
+
+---
+
 # Design Evolution
 
 The design system should evolve gradually.

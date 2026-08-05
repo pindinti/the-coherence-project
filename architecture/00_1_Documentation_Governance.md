@@ -161,6 +161,20 @@ Example:
 
 ---
 
+## Editorial Asset Strategy
+
+The editorial asset organization strategy is documented in the architecture layer and should be referenced by future contributions. Public editorial assets belong under `public/images/` and are kept separate from `architecture/`, `content/`, `src/` and other implementation layers.
+
+Future changes to asset structure or naming conventions must preserve the separation between:
+- architecture (`architecture/`)
+- content source files (`content/`)
+- application code (`src/`)
+- public assets (`public/`)
+
+This ensures asset management remains consistent and scalable as the project grows.
+
+---
+
 # Summaries
 
 Brief summaries are encouraged when they improve readability.

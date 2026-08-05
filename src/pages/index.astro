@@ -1,0 +1,107 @@
+---
+/**
+ * Root Landing Page — /
+ * The Coherence Project
+ *
+ * Neutral entry point. No automatic language detection or redirect.
+ * Presents the project and offers explicit navigation to /en/ and /pt/.
+ * Architecture ref: 11_URL_and_Routing_Strategy.md — Root Strategy
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="The Coherence Project"
+  description="A knowledge platform exploring coherence in organizations, strategy, and thought. Read in English or Portuguese."
+>
+  <main class="landing">
+    <section class="landing-hero">
+      <h1 class="landing-title">The Coherence Project</h1>
+      <p class="landing-tagline">
+        A practical philosophy for organizations that mean what they say.
+      </p>
+      <nav class="landing-nav" aria-label="Language selection">
+        <a href="/en/" class="landing-nav-link" lang="en" hreflang="en">
+          Read in English
+        </a>
+        <a href="/pt/" class="landing-nav-link" lang="pt" hreflang="pt">
+          Ler em Português
+        </a>
+      </nav>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .landing {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100dvh;
+    padding: var(--space-8);
+  }
+
+  .landing-hero {
+    max-width: 44rem;
+    text-align: center;
+  }
+
+  .landing-title {
+    font-size: var(--text-5xl);
+    font-weight: var(--weight-bold);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-6);
+  }
+
+  .landing-tagline {
+    font-size: var(--text-xl);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-12);
+  }
+
+  .landing-nav {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .landing-nav-link {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-3) var(--space-8);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-full);
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition:
+      background-color var(--transition-fast),
+      border-color var(--transition-fast),
+      color var(--transition-fast);
+  }
+
+  .landing-nav-link:hover {
+    background-color: var(--color-surface-muted);
+    border-color: var(--color-border-strong);
+    color: var(--color-text-primary);
+  }
+
+  @media (max-width: 480px) {
+    .landing-title {
+      font-size: var(--text-4xl);
+    }
+
+    .landing-tagline {
+      font-size: var(--text-lg);
+    }
+
+    .landing-nav-link {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

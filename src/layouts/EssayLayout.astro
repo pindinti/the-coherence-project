@@ -1,0 +1,152 @@
+---
+/**
+ * EssayLayout — The Coherence Project
+ *
+ * Layout dedicated to essay content type.
+ * Renders series label, subtitle and publication date as header metadata,
+ * then delegates body rendering to <slot /> (Astro Content's <Content />).
+ *
+ * The Markdown body retains its own H1 heading — the layout does NOT
+ * add a duplicate <h1> from frontmatter. Title is used for SEO only.
+ *
+ * Architecture ref: 07_Technical_Architecture.md — Content Rendering
+ */
+
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  /** Essay title — used in <title> tag and SEO; not rendered as visible H1 */
+  title: string;
+  /** Optional subtitle */
+  subtitle?: string;
+  /** SEO meta description */
+  description: string;
+  /** Publication date */
+  date: Date;
+  /** Optional series name */
+  series?: string;
+  /** Content language: "en" or "pt" */
+  language: string;
+  /** Path for EN hreflang (e.g. "/en/essays/slug") */
+  hreflangEn?: string;
+  /** Path for PT hreflang (e.g. "/pt/ensaios/slug") */
+  hreflangPt?: string;
+}
+
+const {
+  title,
+  subtitle,
+  description,
+  date,
+  series,
+  language,
+  hreflangEn,
+  hreflangPt,
+} = Astro.props;
+
+const locale = language === 'pt' ? 'pt-BR' : 'en-US';
+const dateFormatted = date.toLocaleDateString(locale, {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  lang={language}
+  hreflangEn={hreflangEn}
+  hreflangPt={hreflangPt}
+>
+  <div class="essay-wrapper">
+    <article class="essay">
+      <header class="essay-header">
+        {series && <p class="essay-series">{series}</p>}
+        {subtitle && <p class="essay-subtitle">{subtitle}</p>}
+        <time class="essay-date" datetime={date.toISOString()}>
+          {dateFormatted}
+        </time>
+      </header>
+
+      <div class="essay-body prose">
+        <slot />
+      </div>
+    </article>
+  </div>
+</BaseLayout>
+
+<style>
+  .essay-wrapper {
+    min-height: 100dvh;
+    padding: var(--space-16) var(--space-6);
+  }
+
+  .essay {
+    max-width: var(--max-width-prose);
+    margin-inline: auto;
+  }
+
+  .essay-header {
+    margin-bottom: var(--space-8);
+    padding-bottom: var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .essay-series {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-4);
+  }
+
+  .essay-subtitle {
+    font-size: var(--text-xl);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-snug);
+    font-style: italic;
+    margin-bottom: var(--space-6);
+  }
+
+  .essay-date {
+    display: block;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .essay-body {
+    margin-top: var(--space-8);
+  }
+
+  .essay-body figure,
+  .essay-body .figure {
+    margin: var(--space-12) auto;
+    width: 100%;
+    max-width: min(var(--max-width-prose), 100%);
+  }
+
+  .essay-body figure img,
+  .essay-body .figure__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+  }
+
+  .essay-body figcaption,
+  .essay-body .figure__caption {
+    margin-top: var(--space-4);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .essay-wrapper {
+      padding: var(--space-8) var(--space-4);
+    }
+  }
+</style>

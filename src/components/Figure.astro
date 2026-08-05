@@ -1,0 +1,66 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+  width?: string | number;
+  id?: string;
+}
+
+const { src, alt, caption, width, id } = Astro.props;
+const maxWidthStyle = width
+  ? `max-width: ${typeof width === 'number' ? `${width}px` : width};`
+  : '';
+const figureId = id ?? undefined;
+---
+<!--
+  Figure — reusable editorial image component.
+
+  Usage example:
+    <Figure
+      src="/images/essays/organizational-coherence/coherence-model.svg"
+      alt="Diagram showing the coherence model"
+      caption="Figure 1: The coherence model."
+      width="720px"
+      id="figure-1"
+    />
+
+  Markdown reference example for future essays:
+    ![Figure 1: Coherence model](/images/essays/organizational-coherence/coherence-model.svg)
+
+  Asset conventions:
+  - Store editorial images in public/images/
+  - Use content slug folders: public/images/essays/<slug>/, public/images/articles/<slug>/, etc.
+  - Shared assets belong in public/images/shared/
+  - Use kebab-case file names and prefer SVG for diagrams.
+-->
+<figure class="figure" id={figureId} style={maxWidthStyle}>
+  {/* TODO:
+      Evaluate migrating this component to Astro's <Image />
+      after the editorial asset pipeline is stable.
+  */}
+  <img class="figure__image" src={src} alt={alt} loading="lazy" />
+  {caption && <figcaption class="figure__caption">{caption}</figcaption>}
+</figure>
+
+<style>
+  .figure {
+    margin: var(--space-12) auto;
+    width: 100%;
+  }
+
+  .figure__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+  }
+
+  .figure__caption {
+    margin-top: var(--space-3);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+</style>
