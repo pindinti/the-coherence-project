@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import PublicationIndex from '../../components/PublicationIndex.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const entries = (await getCollection('content'))
+  .filter((entry) =>
+    entry.data.language === 'pt' &&
+    entry.data.type === 'journal' &&
+    entry.data.status === 'published'
+  )
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BaseLayout
+  title="Diário da Coerência — The Coherence Project"
+  description="Registro cronológico da aplicação prática das ideias do projeto."
+  lang="pt"
+  canonical="/diario/"
+  hreflangEn="/en/journal/"
+  hreflangPt="/diario/"
+  languagePathEn="/en/journal/"
+  languagePathPt="/diario/"
+>
+  <PublicationIndex
+    entries={entries}
+    language="pt"
+    title="Diário da Coerência"
+    emptyText="Nenhuma entrada publicada ainda."
+    internalBasePath="/diario"
+  />
+</BaseLayout>

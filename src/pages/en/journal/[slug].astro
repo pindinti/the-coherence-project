@@ -1,0 +1,57 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection, render } from 'astro:content';
+import PublicationLayout from '../../../layouts/PublicationLayout.astro';
+
+export async function getStaticPaths() {
+  const content = await getCollection('content');
+  const entriesEn = content.filter((entry) =>
+    entry.data.language === 'en' &&
+    entry.data.type === 'journal' &&
+    entry.data.status === 'published'
+  );
+  const entriesPt = content.filter((entry) =>
+    entry.data.language === 'pt' &&
+    entry.data.type === 'journal' &&
+    entry.data.status === 'published'
+  );
+
+  return entriesEn.map((entry) => {
+    const ptMatch = entry.data.translationId
+      ? entriesPt.find((candidate) => candidate.data.translationId === entry.data.translationId)
+      : undefined;
+
+    return {
+      params: { slug: entry.id.split('/').pop()! },
+      props: { entry, ptSlug: ptMatch?.id.split('/').pop() },
+    };
+  });
+}
+
+interface Props {
+  entry: CollectionEntry<'content'>;
+  ptSlug?: string;
+}
+
+const { entry, ptSlug } = Astro.props;
+const { Content } = await render(entry);
+const slug = entry.id.split('/').pop()!;
+const enPath = `/en/journal/${slug}`;
+const ptPath = ptSlug ? `/diario/${ptSlug}` : undefined;
+---
+
+<PublicationLayout
+  title={entry.data.title}
+  subtitle={entry.data.subtitle}
+  description={entry.data.description}
+  date={entry.data.date}
+  series={entry.data.series}
+  language="en"
+  canonical={entry.data.canonicalUrl ?? enPath}
+  hreflangEn={enPath}
+  hreflangPt={ptPath}
+  languagePathEn={enPath}
+  languagePathPt={ptPath ?? '/'}
+>
+  <Content />
+</PublicationLayout>

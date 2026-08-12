@@ -1,0 +1,177 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entries: CollectionEntry<'content'>[];
+  language: 'en' | 'pt';
+  title: string;
+  emptyText: string;
+  internalBasePath: string;
+}
+
+const {
+  entries,
+  language,
+  title,
+  emptyText,
+  internalBasePath,
+} = Astro.props;
+
+const locale = language === 'pt' ? 'pt-BR' : 'en-US';
+---
+
+<div class="publication-index">
+  <header class="publication-index__header">
+    <h1>{title}</h1>
+  </header>
+
+  <main>
+    {entries.length > 0 ? (
+      <ul class="publication-list" role="list">
+        {entries.map((entry) => {
+          const slug = entry.id.split('/').pop()!;
+          const isExternal =
+            entry.data.type === 'article' &&
+            entry.data.publicationMode === 'external';
+          const href = isExternal
+            ? entry.data.externalUrl!
+            : `${internalBasePath}/${slug}`;
+          const externalLabel = entry.data.externalPublication
+            ? language === 'pt'
+              ? `Publicado em ${entry.data.externalPublication} ↗`
+              : `Published by ${entry.data.externalPublication} ↗`
+            : language === 'pt'
+              ? 'Publicação externa ↗'
+              : 'External publication ↗';
+
+          return (
+            <li class="publication-item">
+              <a
+                class="publication-link"
+                href={href}
+                target={isExternal ? '_blank' : undefined}
+                rel={isExternal ? 'noopener noreferrer' : undefined}
+              >
+                <article>
+                  {isExternal && (
+                    <span class="publication-source">{externalLabel}</span>
+                  )}
+                  <h2>{entry.data.title}</h2>
+                  {entry.data.subtitle && <p class="publication-subtitle">{entry.data.subtitle}</p>}
+                  <p class="publication-description">{entry.data.description}</p>
+                  <time datetime={entry.data.date.toISOString()}>
+                    {entry.data.date.toLocaleDateString(locale, {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
+                  </time>
+                </article>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    ) : (
+      <p class="empty-state">{emptyText}</p>
+    )}
+  </main>
+</div>
+
+<style>
+  .publication-index {
+    max-width: var(--max-width-content);
+    margin-inline: auto;
+    padding: var(--space-16) var(--space-6);
+  }
+
+  .publication-index__header {
+    margin-bottom: var(--space-12);
+  }
+
+  .publication-index__header h1 {
+    font-size: var(--text-4xl);
+    font-weight: var(--weight-bold);
+    letter-spacing: -0.02em;
+  }
+
+  .publication-list {
+    display: flex;
+    flex-direction: column;
+    max-width: 56rem;
+    list-style: none;
+  }
+
+  .publication-item:not(:last-child) {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .publication-link {
+    display: block;
+    padding: var(--space-8) 0;
+    color: inherit;
+    text-decoration: none;
+    transition: opacity var(--transition-fast);
+  }
+
+  .publication-link:hover {
+    opacity: 0.7;
+  }
+
+  .publication-source {
+    display: inline-block;
+    margin-bottom: var(--space-3);
+    color: var(--color-accent);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.05em;
+  }
+
+  .publication-link h2 {
+    margin-bottom: var(--space-2);
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-snug);
+  }
+
+  .publication-subtitle {
+    margin-bottom: var(--space-4);
+    color: var(--color-text-secondary);
+    font-size: var(--text-base);
+    font-style: italic;
+    line-height: var(--leading-snug);
+  }
+
+  .publication-description {
+    max-width: 52ch;
+    margin-bottom: var(--space-4);
+    color: var(--color-text-secondary);
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+  }
+
+  time {
+    color: var(--color-text-muted);
+    font-size: var(--text-xs);
+  }
+
+  .empty-state {
+    padding: var(--space-8) 0;
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+
+  @media (max-width: 768px) {
+    .publication-index {
+      padding: var(--space-8) var(--space-4);
+    }
+
+    .publication-index__header h1 {
+      font-size: var(--text-3xl);
+    }
+
+    .publication-link h2 {
+      font-size: var(--text-xl);
+    }
+  }
+</style>

@@ -35,6 +35,33 @@ const contentSchema = z.object({
   featured: z.boolean().optional().default(false),
   series: z.string().optional(),
   canonicalUrl: z.string().url().optional(),
+  publicationMode: z.enum(['internal', 'external']).optional(),
+  externalUrl: z.string().url().optional(),
+  externalPublication: z.string().optional(),
+}).superRefine((data, ctx) => {
+  const hasArticlePublicationMetadata =
+    data.publicationMode !== undefined ||
+    data.externalUrl !== undefined ||
+    data.externalPublication !== undefined;
+
+  if (data.type !== 'article' && hasArticlePublicationMetadata) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'Article publication metadata applies only to type: article.',
+    });
+  }
+
+  if (
+    data.type === 'article' &&
+    data.publicationMode === 'external' &&
+    !data.externalUrl
+  ) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ['externalUrl'],
+      message: 'External articles require externalUrl.',
+    });
+  }
 });
 
 /** Glob pattern: all Markdown files, excluding README.md placeholders */

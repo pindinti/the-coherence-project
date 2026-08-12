@@ -14,6 +14,20 @@ const {
   portuguesePath,
   homePath,
 } = Astro.props;
+
+const isEnglish = currentLanguage === 'en';
+const pathname = Astro.url.pathname;
+const navigation = isEnglish
+  ? [
+      { label: 'Essays', href: '/en/', active: pathname === '/en/' || pathname.startsWith('/en/essays/') },
+      { label: 'Articles', href: '/en/articles/', active: pathname.startsWith('/en/articles/') },
+      { label: 'Journal', href: '/en/journal/', active: pathname.startsWith('/en/journal/') },
+    ]
+  : [
+      { label: 'Ensaios', href: '/', active: pathname === '/' || pathname.startsWith('/ensaios/') },
+      { label: 'Artigos', href: '/artigos/', active: pathname.startsWith('/artigos/') },
+      { label: 'Diário', href: '/diario/', active: pathname.startsWith('/diario/') },
+    ];
 ---
 
 <header class="site-header">
@@ -21,6 +35,17 @@ const {
     <a class="site-header__identity" href={homePath}>
       The Coherence Project
     </a>
+
+    <nav
+      class="site-header__navigation"
+      aria-label={isEnglish ? 'Primary navigation' : 'Navegação principal'}
+    >
+      {navigation.map((item) => (
+        <a href={item.href} aria-current={item.active ? 'page' : undefined}>
+          {item.label}
+        </a>
+      ))}
+    </nav>
 
     <div class="site-header__language">
       <LanguageSelector
@@ -52,6 +77,28 @@ const {
     text-decoration: none;
   }
 
+  .site-header__navigation {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-left: var(--space-4);
+    font-size: var(--text-sm);
+  }
+
+  .site-header__navigation a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+  }
+
+  .site-header__navigation a:hover,
+  .site-header__navigation a[aria-current='page'] {
+    color: var(--color-text-primary);
+  }
+
+  .site-header__navigation a[aria-current='page'] {
+    font-weight: var(--weight-semibold);
+  }
+
   .site-header__language {
     margin-left: auto;
   }
@@ -63,6 +110,13 @@ const {
 
     .site-header__inner {
       flex-wrap: wrap;
+    }
+
+    .site-header__navigation {
+      order: 3;
+      width: 100%;
+      margin-left: 0;
+      overflow-x: auto;
     }
   }
 </style>

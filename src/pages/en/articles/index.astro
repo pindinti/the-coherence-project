@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import PublicationIndex from '../../../components/PublicationIndex.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const articles = (await getCollection('content'))
+  .filter((entry) =>
+    entry.data.language === 'en' &&
+    entry.data.type === 'article' &&
+    entry.data.status === 'published'
+  )
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BaseLayout
+  title="Articles — The Coherence Project"
+  description="Articles on organizational coherence, strategy, and capability."
+  lang="en"
+  canonical="/en/articles/"
+  hreflangEn="/en/articles/"
+  hreflangPt="/artigos/"
+  languagePathEn="/en/articles/"
+  languagePathPt="/artigos/"
+>
+  <PublicationIndex
+    entries={articles}
+    language="en"
+    title="Articles"
+    emptyText="No published articles yet."
+    internalBasePath="/en/articles"
+  />
+</BaseLayout>
