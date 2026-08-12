@@ -7,7 +7,7 @@
 | Version | 0.2 |
 | Status | Draft |
 | Owner | Paulo Eduardo Pereira |
-| Last Updated | 2026-08-03 |
+| Last Updated | 2026-08-12 |
 
 ---
 
@@ -59,6 +59,11 @@ It should simplify ideas without oversimplifying them.
 
 Domains: Articles, Podcast.
 
+Articles may be published in full within The Coherence Project or published
+externally and referenced here. The delivery mode determines whether readers
+continue to an internal article or to its original publication; the metadata
+contract is defined in `10_Content_Model.md`.
+
 Characteristics:
 
 - Accessible
@@ -84,6 +89,10 @@ Characteristics:
 - Evidence-based
 
 Entries should document both successful and unsuccessful outcomes.
+
+The Coherence Journal is native project content, published in full within The
+Coherence Project and explored chronologically. Its case-study purpose remains
+distinct from a generic blog.
 
 ---
 

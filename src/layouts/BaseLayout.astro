@@ -17,7 +17,7 @@ interface Props {
   title: string;
   /** Page description — rendered in meta description and og:description */
   description: string;
-  /** Document language code, e.g. "en" or "pt". Defaults to "en". */
+  /** Document language code, e.g. "en" or "pt". Defaults to "pt". */
   lang?: string;
   /** Destination for the English language selector link */
   languagePathEn?: string;
@@ -25,7 +25,7 @@ interface Props {
   languagePathPt?: string;
   /** Path for the English hreflang alternate (e.g. "/en/essays/slug") */
   hreflangEn?: string;
-  /** Path for the Portuguese hreflang alternate (e.g. "/pt/ensaios/slug") */
+  /** Path for the Portuguese hreflang alternate (e.g. "/ensaios/slug") */
   hreflangPt?: string;
   /** Canonical path or absolute URL override */
   canonical?: string;
@@ -34,7 +34,7 @@ interface Props {
 const {
   title,
   description,
-  lang = 'en',
+  lang = 'pt',
   languagePathEn,
   languagePathPt,
   hreflangEn,
@@ -47,12 +47,8 @@ if (!site) {
   throw new Error('Astro site must be configured for metadata generation.');
 }
 const abs = (url: string): string => new URL(url, site).toString();
-const currentLanguage = Astro.url.pathname.startsWith('/pt/')
-  ? 'pt'
-  : Astro.url.pathname.startsWith('/en/')
-    ? 'en'
-    : undefined;
-const homePath = currentLanguage ? `/${currentLanguage}/` : '/';
+const currentLanguage = Astro.url.pathname.startsWith('/en/') ? 'en' : 'pt';
+const homePath = currentLanguage === 'en' ? '/en/' : '/';
 ---
 
 <!doctype html>

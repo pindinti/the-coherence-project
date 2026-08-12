@@ -1,101 +1,191 @@
 ---
 /**
- * Root Landing Page — /
+ * PT Homepage — /
  * The Coherence Project
  *
- * Neutral entry point. No automatic language detection or redirect.
- * Presents the project and offers explicit navigation to /en/ and /pt/.
- * Architecture ref: 11_URL_and_Routing_Strategy.md — Root Strategy
+ * Lista ensaios publicados em Português, ordenados por data decrescente.
+ * Architecture ref: 11_URL_and_Routing_Strategy.md — Portuguese Root Strategy
  */
 
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const essays = (await getCollection('content'))
+  .filter(
+    (entry) =>
+      entry.data.language === 'pt' &&
+      entry.data.type === 'essay' &&
+      entry.data.status === 'published',
+  )
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
 <BaseLayout
   title="The Coherence Project"
-  description="A knowledge platform exploring coherence in organizations, strategy, and thought. Read in English or Portuguese."
-  canonical="/"
+  description="Ensaios, artigos e notas de pesquisa sobre coerência organizacional, estratégia e capacidade."
+  lang="pt"
   hreflangEn="/en/"
-  hreflangPt="/pt/"
+  hreflangPt="/"
+  canonical="/"
+  languagePathEn="/en/"
+  languagePathPt="/"
 >
-  <main class="landing">
-    <section class="landing-hero">
-      <h1 class="landing-title">The Coherence Project</h1>
-      <p class="landing-tagline">
-        A practical philosophy for organizations that mean what they say.
-      </p>
-      <nav class="landing-actions" aria-label="Choose a language">
-        <a href="/en/" lang="en" hreflang="en">Read in English</a>
-        <a href="/pt/" lang="pt" hreflang="pt">Ler em Português</a>
-      </nav>
-    </section>
-  </main>
+  <div class="page">
+    <header class="page-header">
+      <a href="/" class="page-back" aria-label="Página inicial">
+        The Coherence Project
+      </a>
+      <h1 class="page-title">Ensaios</h1>
+    </header>
+
+    <main class="page-main">
+      {essays.length > 0 ? (
+        <ul class="essay-list" role="list">
+          {essays.map((essay) => {
+            const slug = essay.id.split('/').pop()!;
+            return (
+              <li class="essay-item">
+                <a href={`/ensaios/${slug}`} class="essay-link">
+                  <article class="essay-card">
+                    {essay.data.series && (
+                      <span class="essay-card-series">{essay.data.series}</span>
+                    )}
+                    <h2 class="essay-card-title">{essay.data.title}</h2>
+                    {essay.data.subtitle && (
+                      <p class="essay-card-subtitle">{essay.data.subtitle}</p>
+                    )}
+                    <p class="essay-card-description">{essay.data.description}</p>
+                    <time
+                      class="essay-card-date"
+                      datetime={essay.data.date.toISOString()}
+                    >
+                      {essay.data.date.toLocaleDateString('pt-BR', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      })}
+                    </time>
+                  </article>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <p class="empty-state">Nenhum ensaio publicado ainda.</p>
+      )}
+    </main>
+  </div>
 </BaseLayout>
 
 <style>
-  .landing {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100dvh;
-    padding: var(--space-8);
+  .page {
+    max-width: var(--max-width-content);
+    margin-inline: auto;
+    padding: var(--space-16) var(--space-6);
   }
 
-  .landing-hero {
-    max-width: 44rem;
-    text-align: center;
-  }
-
-  .landing-title {
-    font-size: var(--text-5xl);
-    font-weight: var(--weight-bold);
-    letter-spacing: -0.02em;
-    margin-bottom: var(--space-6);
-  }
-
-  .landing-tagline {
-    font-size: var(--text-xl);
-    color: var(--color-text-secondary);
-    line-height: var(--leading-relaxed);
+  .page-header {
     margin-bottom: var(--space-12);
   }
 
-  .landing-actions {
-    display: flex;
-    gap: var(--space-4);
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .landing-actions a {
-    display: inline-flex;
-    align-items: center;
-    padding: var(--space-3) var(--space-8);
-    border: 1px solid var(--color-border-strong);
-    border-radius: var(--radius-full);
-    font-size: var(--text-base);
-    font-weight: var(--weight-medium);
-    color: var(--color-text-primary);
+  .page-back {
+    display: inline-block;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
     text-decoration: none;
+    margin-bottom: var(--space-4);
+    transition: color var(--transition-fast);
   }
 
-  .landing-actions a:hover {
-    background-color: var(--color-surface-muted);
-    color: var(--color-text-primary);
+  .page-back:hover {
+    color: var(--color-text-secondary);
   }
 
-  @media (max-width: 480px) {
-    .landing-title {
-      font-size: var(--text-4xl);
+  .page-title {
+    font-size: var(--text-4xl);
+    font-weight: var(--weight-bold);
+    letter-spacing: -0.02em;
+  }
+
+  .essay-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    max-width: 56rem;
+  }
+
+  .essay-item:not(:last-child) {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .essay-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: var(--space-8) 0;
+    transition: opacity var(--transition-fast);
+  }
+
+  .essay-link:hover {
+    opacity: 0.7;
+  }
+
+  .essay-card-series {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: var(--weight-semibold);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-3);
+  }
+
+  .essay-card-title {
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-snug);
+    margin-bottom: var(--space-2);
+  }
+
+  .essay-card-subtitle {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    font-style: italic;
+    line-height: var(--leading-snug);
+    margin-bottom: var(--space-4);
+  }
+
+  .essay-card-description {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-4);
+    max-width: 52ch;
+  }
+
+  .essay-card-date {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+
+  .empty-state {
+    color: var(--color-text-muted);
+    font-style: italic;
+    padding: var(--space-8) 0;
+  }
+
+  @media (max-width: 768px) {
+    .page {
+      padding: var(--space-8) var(--space-4);
     }
 
-    .landing-tagline {
-      font-size: var(--text-lg);
+    .page-title {
+      font-size: var(--text-3xl);
     }
 
-    .landing-actions a {
-      width: 100%;
-      justify-content: center;
+    .essay-card-title {
+      font-size: var(--text-xl);
     }
   }
 </style>

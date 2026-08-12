@@ -7,7 +7,7 @@
 | Version | 0.1 |
 | Status | Draft |
 | Owner | Paulo Eduardo Pereira |
-| Last Updated | 2026-08-02 |
+| Last Updated | 2026-08-12 |
 
 ---
 
@@ -164,6 +164,32 @@ Avoid:
 - Distractions.
 - Excessive side elements.
 - Interruptions.
+
+This layout applies to internally published articles. Article delivery mode
+and external-publication metadata are defined in `10_Content_Model.md`.
+
+---
+
+# External Article Links
+
+## Purpose
+
+Let readers reach externally published articles directly while retaining The
+Coherence Project as their point of discovery.
+
+## Requirements
+
+- External article links open the original publication in a new browser tab.
+- Links use `rel="noopener noreferrer"`.
+- The link clearly but unobtrusively indicates that the destination is
+  external and identifies the original publication when available.
+- No confirmation dialog, modal warning, or intermediary page is used.
+- Internal articles use normal same-tab navigation.
+
+Articles indexes may contain both internal and external items. Their
+presentation must make the destination type understandable before selection,
+without introducing separate indexes, filters, categories, or additional
+taxonomy.
 
 ---
 

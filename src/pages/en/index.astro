@@ -4,7 +4,7 @@
  * The Coherence Project
  *
  * Lists published essays in English, sorted by date descending.
- * Architecture ref: 11_URL_and_Routing_Strategy.md — Language Namespaces
+ * Architecture ref: 11_URL_and_Routing_Strategy.md — Public Language Paths
  */
 
 import { getCollection } from 'astro:content';
@@ -25,12 +25,14 @@ const essays = (await getCollection('content'))
   description="Essays, articles and research notes on organizational coherence, strategy, and capability."
   lang="en"
   hreflangEn="/en/"
-  hreflangPt="/pt/"
+  hreflangPt="/"
   canonical="/en/"
+  languagePathEn="/en/"
+  languagePathPt="/"
 >
   <div class="page">
     <header class="page-header">
-      <a href="/" class="page-back" aria-label="Back to language selection">
+      <a href="/en/" class="page-back" aria-label="English homepage">
         The Coherence Project
       </a>
       <h1 class="page-title">Essays</h1>

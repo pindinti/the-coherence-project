@@ -114,6 +114,33 @@ canonicalUrl: "https://paulopereira.net.br/en/essays/nature-of-organizational-co
 | `featured` | Boolean | No | Indicates if the content should be highlighted in hero sections or home page. |
 | `series` | String | No | Name of the thematic series to which the document belongs. |
 | `canonicalUrl` | String | No | Explicit canonical URL override. If omitted, the application derives the canonical URL from `11_URL_and_Routing_Strategy.md`. Project-hosted URLs must follow that document's language-prefix rules. |
+| `publicationMode` | Enum (`internal`, `external`) | No; Articles only | Article delivery mode. Omitted article values default to `internal`. Not applicable to other content types. |
+| `externalUrl` | URL | Conditional; external Articles only | Original-publication URL to which readers are sent. |
+| `externalPublication` | String | No; external Articles only | Identifies the original publication, for example `Sebrae/PR`. |
+
+## Article Publication Modes
+
+Article delivery is the only content-specific publishing distinction in the
+canonical collection:
+
+- `internal` (the default) publishes the full article inside The Coherence
+  Project.
+- `external` stores a metadata/reference entry in the collection while the
+  full article remains at its original publication.
+
+`externalUrl` is the reader destination for an external article. It is not a
+canonical URL override: `canonicalUrl` continues to identify the URL search
+engines should treat as canonical and is set independently when appropriate.
+
+## Validation Rules
+
+- `publicationMode`, `externalUrl`, and `externalPublication` apply only when
+  `type` is `article`.
+- An article with `publicationMode: external` must provide `externalUrl`.
+- `externalPublication`, when provided, identifies the original publication.
+- Internal articles use the normal content body and localized internal route.
+- External articles are reference entries and do not require an internal
+  public detail route.
 
 ---
 
@@ -144,6 +171,29 @@ const contentSchema = z.object({
   featured: z.boolean().optional().default(false),
   series: z.string().optional(),
   canonicalUrl: z.string().url().optional(),
+  publicationMode: z.enum(['internal', 'external']).optional(),
+  externalUrl: z.string().url().optional(),
+  externalPublication: z.string().optional(),
+}).superRefine((data, ctx) => {
+  const hasArticlePublicationMetadata =
+    data.publicationMode !== undefined ||
+    data.externalUrl !== undefined ||
+    data.externalPublication !== undefined;
+
+  if (data.type !== 'article' && hasArticlePublicationMetadata) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'Article publication metadata applies only to type: article.',
+    });
+  }
+
+  if (data.type === 'article' && data.publicationMode === 'external' && !data.externalUrl) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ['externalUrl'],
+      message: 'External articles require externalUrl.',
+    });
+  }
 });
 
 export const collections = {
