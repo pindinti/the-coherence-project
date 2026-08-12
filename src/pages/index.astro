@@ -24,13 +24,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <p class="landing-tagline">
         A practical philosophy for organizations that mean what they say.
       </p>
-      <nav class="landing-nav" aria-label="Language selection">
-        <a href="/en/" class="landing-nav-link" lang="en" hreflang="en">
-          Read in English
-        </a>
-        <a href="/pt/" class="landing-nav-link" lang="pt" hreflang="pt">
-          Ler em Português
-        </a>
+      <nav class="landing-actions" aria-label="Choose a language">
+        <a href="/en/" lang="en" hreflang="en">Read in English</a>
+        <a href="/pt/" lang="pt" hreflang="pt">Ler em Português</a>
       </nav>
     </section>
   </main>
@@ -64,14 +60,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     margin-bottom: var(--space-12);
   }
 
-  .landing-nav {
+  .landing-actions {
     display: flex;
     gap: var(--space-4);
     justify-content: center;
     flex-wrap: wrap;
   }
 
-  .landing-nav-link {
+  .landing-actions a {
     display: inline-flex;
     align-items: center;
     padding: var(--space-3) var(--space-8);
@@ -81,15 +77,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     font-weight: var(--weight-medium);
     color: var(--color-text-primary);
     text-decoration: none;
-    transition:
-      background-color var(--transition-fast),
-      border-color var(--transition-fast),
-      color var(--transition-fast);
   }
 
-  .landing-nav-link:hover {
+  .landing-actions a:hover {
     background-color: var(--color-surface-muted);
-    border-color: var(--color-border-strong);
     color: var(--color-text-primary);
   }
 
@@ -102,7 +93,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       font-size: var(--text-lg);
     }
 
-    .landing-nav-link {
+    .landing-actions a {
       width: 100%;
       justify-content: center;
     }

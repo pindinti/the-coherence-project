@@ -33,6 +33,10 @@ interface Props {
   hreflangPt?: string;
   /** Canonical path or absolute URL override */
   canonical?: string;
+  /** Destination for the English language selector link */
+  languagePathEn?: string;
+  /** Destination for the Portuguese language selector link */
+  languagePathPt?: string;
 }
 
 const {
@@ -45,6 +49,8 @@ const {
   hreflangEn,
   hreflangPt,
   canonical,
+  languagePathEn,
+  languagePathPt,
 } = Astro.props;
 
 const locale = language === 'pt' ? 'pt-BR' : 'en-US';
@@ -62,6 +68,8 @@ const dateFormatted = date.toLocaleDateString(locale, {
   hreflangEn={hreflangEn}
   hreflangPt={hreflangPt}
   canonical={canonical}
+  languagePathEn={languagePathEn}
+  languagePathPt={languagePathPt}
 >
   <div class="essay-wrapper">
     <article class="essay">

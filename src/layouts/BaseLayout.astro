@@ -10,6 +10,7 @@
  */
 
 import '../styles/global.css';
+import LanguageSelector from '../components/LanguageSelector.astro';
 
 interface Props {
   /** Page title — rendered in <title> and og:title */
@@ -18,6 +19,10 @@ interface Props {
   description: string;
   /** Document language code, e.g. "en" or "pt". Defaults to "en". */
   lang?: string;
+  /** Destination for the English language selector link */
+  languagePathEn?: string;
+  /** Destination for the Portuguese language selector link */
+  languagePathPt?: string;
   /** Path for the English hreflang alternate (e.g. "/en/essays/slug") */
   hreflangEn?: string;
   /** Path for the Portuguese hreflang alternate (e.g. "/pt/ensaios/slug") */
@@ -30,6 +35,8 @@ const {
   title,
   description,
   lang = 'en',
+  languagePathEn,
+  languagePathPt,
   hreflangEn,
   hreflangPt,
   canonical,
@@ -40,6 +47,11 @@ if (!site) {
   throw new Error('Astro site must be configured for metadata generation.');
 }
 const abs = (url: string): string => new URL(url, site).toString();
+const currentLanguage = Astro.url.pathname.startsWith('/pt/')
+  ? 'pt'
+  : Astro.url.pathname.startsWith('/en/')
+    ? 'en'
+    : undefined;
 ---
 
 <!doctype html>
@@ -76,6 +88,11 @@ const abs = (url: string): string => new URL(url, site).toString();
     />
   </head>
   <body>
+    <LanguageSelector
+      currentLanguage={currentLanguage}
+      englishPath={languagePathEn}
+      portuguesePath={languagePathPt}
+    />
     <slot />
   </body>
 </html>

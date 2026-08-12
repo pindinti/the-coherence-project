@@ -69,6 +69,8 @@ const enPath = enSlug ? `/en/essays/${enSlug}` : undefined;
   hreflangEn={enPath}
   hreflangPt={ptPath}
   canonical={essay.data.canonicalUrl ?? ptPath}
+  languagePathEn={enPath ?? '/en/'}
+  languagePathPt={ptPath}
 >
   <Content />
 </EssayLayout>

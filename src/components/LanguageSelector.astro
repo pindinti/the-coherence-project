@@ -1,0 +1,68 @@
+---
+interface Props {
+  currentLanguage?: 'en' | 'pt';
+  englishPath?: string;
+  portuguesePath?: string;
+}
+
+const {
+  currentLanguage,
+  englishPath = '/en/',
+  portuguesePath = '/pt/',
+} = Astro.props;
+---
+
+<nav class="language-selector" aria-label="Language selection">
+  <a
+    href={englishPath}
+    lang="en"
+    hreflang="en"
+    aria-current={currentLanguage === 'en' ? 'page' : undefined}
+  >
+    English
+  </a>
+  <span aria-hidden="true">/</span>
+  <a
+    href={portuguesePath}
+    lang="pt"
+    hreflang="pt"
+    aria-current={currentLanguage === 'pt' ? 'page' : undefined}
+  >
+    Português
+  </a>
+</nav>
+
+<style>
+  .language-selector {
+    position: absolute;
+    top: var(--space-6);
+    right: var(--space-6);
+    display: flex;
+    gap: var(--space-2);
+    align-items: center;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .language-selector a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+  }
+
+  .language-selector a[aria-current='page'] {
+    color: var(--color-text-primary);
+    font-weight: var(--weight-semibold);
+  }
+
+  .language-selector a:hover {
+    color: var(--color-accent-hover);
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .language-selector {
+      top: var(--space-4);
+      right: var(--space-4);
+    }
+  }
+</style>
