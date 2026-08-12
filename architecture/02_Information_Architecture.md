@@ -94,7 +94,7 @@ Information about the project, its author and its purpose.
 
 The focus is credibility and context rather than personal promotion.
 
-About is a **navigational section**, not a knowledge domain — it should not appear in content-type taxonomies (see 03_Content_Strategy).
+About is a **navigational section**, not a knowledge domain — it should not appear in content-type taxonomies (see `03_Content_Strategy.md`).
 
 ---
 
@@ -152,7 +152,7 @@ The repository organizes content by function rather than technology.
 
 Documentation (`architecture/`), research notes, published content (`content/en/` and `content/pt/`) and implementation (`src/`) remain clearly separated.
 
-Content subdirectories follow a uniform English structure (`essays`, `articles`, `journal`, `research`, `pages`) across both languages. Full content schema specification: see **10_Content_Model**.
+Content subdirectories follow a uniform English structure (`essays`, `articles`, `journal`, `research`, `pages`) across both languages. Full content schema specification: see `10_Content_Model.md`.
 
 ---
 

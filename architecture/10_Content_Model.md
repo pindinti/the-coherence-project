@@ -7,7 +7,7 @@
 | Version | 0.1 |
 | Status | Draft |
 | Owner | Paulo Eduardo Pereira |
-| Last Updated | 2026-08-03 |
+| Last Updated | 2026-08-12 |
 
 ---
 
@@ -90,7 +90,7 @@ status: "published"
 translationId: "essay-01-organizational-coherence"
 featured: true
 series: "Foundations of Coherence"
-canonicalUrl: "https://thecoherenceproject.org/essays/nature-of-organizational-coherence"
+canonicalUrl: "https://paulopereira.net.br/en/essays/nature-of-organizational-coherence"
 ---
 ```
 
@@ -113,13 +113,17 @@ canonicalUrl: "https://thecoherenceproject.org/essays/nature-of-organizational-c
 | `translationId` | String | No | Unique identifier linking equivalent English and Portuguese versions. |
 | `featured` | Boolean | No | Indicates if the content should be highlighted in hero sections or home page. |
 | `series` | String | No | Name of the thematic series to which the document belongs. |
-| `canonicalUrl` | String | No | External URL if the content was originally or cross-published elsewhere. |
+| `canonicalUrl` | String | No | Explicit canonical URL override. If omitted, the application derives the canonical URL from `11_URL_and_Routing_Strategy.md`. Project-hosted URLs must follow that document's language-prefix rules. |
 
 ---
 
-# Astro Content Collections Implementation
+# Astro Content Collection Contract
 
-In Astro (`src/content/config.ts`), the canonical schema is defined using Zod as follows:
+The project uses one logical Astro collection named `content` across the language and content-type directories defined above. Those physical directories organize source files; they do not define separate canonical collection names.
+
+Public paths are independent of the collection structure and are defined exclusively in `11_URL_and_Routing_Strategy.md`.
+
+In Astro (`src/content/config.ts`), the collection and canonical schema are defined using Zod as follows:
 
 ```typescript
 import { defineCollection, z } from 'astro:content';

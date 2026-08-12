@@ -7,7 +7,7 @@
 | Version | 0.1 |
 | Status | Draft |
 | Owner | Paulo Eduardo Pereira |
-| Last Updated | 2026-08-03 |
+| Last Updated | 2026-08-12 |
 
 ---
 
@@ -26,7 +26,7 @@ Its objective is to establish predictable, SEO-optimized, and clear URLs for con
 1. **Explicit Language Prefixes**: All content belongs to an explicit language namespace (`/en/` or `/pt/`).
 2. **Neutral Root Experience**: The root domain (`/`) does not auto-detect or force automatic redirects. It presents a neutral entry point with language selection.
 3. **Localized Slugs**: Slugs and category paths in URLs are localized per language for optimal SEO and reading context.
-4. **Decoupled Physical Structure**: Internal content collection directories remain uniform in English (`content/en/essays/`, `content/pt/essays/`), while public URLs are translated.
+4. **Decoupled Physical Structure**: Physical content directories remain uniform in English (`content/en/essays/`, `content/pt/essays/`), while public URLs are translated. The logical collection structure is defined in `10_Content_Model.md`.
 5. **Relationship via `translationId`**: Equivalent articles across languages are linked by their internal `translationId`, not by matching URL paths.
 
 ---
@@ -46,9 +46,11 @@ The root URL (`/`) serves as a neutral landing page.
 All published pages exist within explicit language prefixes:
 
 ```text
-https://thecoherenceproject.org/en/...
-https://thecoherenceproject.org/pt/...
+https://paulopereira.net.br/en/...
+https://paulopereira.net.br/pt/...
 ```
+
+The production domain is defined in `07_2_Framework_and_Platform_Decision.md`.
 
 ---
 
@@ -88,11 +90,11 @@ Public URL paths are localized for each language to ensure natural reading exper
 
 ---
 
-# Internal Collection vs URL Mapping
+# Content Directory vs URL Mapping
 
-While physical Markdown directories are kept uniform in English for simplicity in content collections:
+Physical Markdown directories are kept uniform in English while public paths are localized. This table defines only directory-to-URL mapping; the content collection contract remains authoritative in `10_Content_Model.md`.
 
-| Collection Directory | Language | Public URL Path |
+| Content Directory | Language | Public URL Path |
 |----------------------|----------|-----------------|
 | `content/en/essays/` | English | `/en/essays/[slug]` |
 | `content/pt/essays/` | Portuguese | `/pt/ensaios/[slug]` |
@@ -122,5 +124,7 @@ To support internationalization best practices, every page renders appropriate m
 
 - `<link rel="alternate" hreflang="en" href="..." />`
 - `<link rel="alternate" hreflang="pt" href="..." />`
-- `<link rel="alternate" hreflang="x-default" href="https://thecoherenceproject.org/" />`
+- `<link rel="alternate" hreflang="x-default" href="https://paulopereira.net.br/" />`
 - `<link rel="canonical" href="..." />`
+
+Canonical URLs for project-hosted content use the localized paths defined in this document, including the explicit `/en/` or `/pt/` prefix. If a content item provides the optional `canonicalUrl` override defined in `10_Content_Model.md`, that absolute URL is used instead.

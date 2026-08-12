@@ -7,7 +7,7 @@
 | Version | 0.1 |
 | Status | Draft |
 | Owner | Paulo Eduardo Pereira |
-| Last Updated | 2026-08-02 |
+| Last Updated | 2026-08-12 |
 
 ---
 
@@ -34,6 +34,12 @@ Astro
 Selected:
 
 GitHub Pages
+
+## Production Domain
+
+Selected:
+
+https://paulopereira.net.br
 
 ---
 
@@ -121,6 +127,18 @@ The platform provides:
 - Integration with GitHub workflows.
 - Custom domain support.
 - Reliable static website delivery.
+
+---
+
+# Production Domain Decision
+
+## Selected Domain
+
+https://paulopereira.net.br
+
+## Reasoning
+
+The selected domain represents the creator rather than a single project concept. It provides a stable long-term anchor for The Coherence Project and future initiatives while preserving the project's current content-focused architecture.
 
 ---
 

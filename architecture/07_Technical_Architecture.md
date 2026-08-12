@@ -121,7 +121,7 @@ the-coherence-project/
 
 Content should be written and maintained as Markdown files.
 
-Each content item contains structured YAML metadata defined by the project's canonical content schema (see **10_Content_Model** for full field definitions, types, and Astro Content Collections configuration).
+Each content item contains structured YAML metadata defined by the project's canonical content schema (see `10_Content_Model.md` for full field definitions, types, and Astro Content Collections configuration).
 
 Metadata enables:
 
@@ -183,7 +183,7 @@ The content structure should influence the presentation.
 
 # Deployment
 
-The project should support automated deployment. Full workflow: see **08_Deployment**.
+The project should support automated deployment. Full workflow: see `08_Deployment.md`.
 
 ---
 
@@ -197,7 +197,7 @@ The hosting solution should provide:
 - Global performance.
 - Custom domain support.
 
-(Platform selection and rationale: see 07.2_Framework_and_Platform_Decision.)
+(Platform selection and rationale: see `07_2_Framework_and_Platform_Decision.md`.)
 
 ---
 
@@ -218,4 +218,4 @@ New capabilities should only be introduced when justified by user needs.
 
 # Technical Decision Rule
 
-Apply the **Decision Filter** defined in 01_Principles before adding any technology.
+Apply the **Decision Filter** defined in `01_Principles.md` before adding any technology.

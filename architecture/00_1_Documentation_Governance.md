@@ -149,6 +149,25 @@ Implementation
 
 When conflicts exist, higher-level documents take precedence.
 
+`10_Content_Model.md` is authoritative for the structure and metadata of content source files. `11_URL_and_Routing_Strategy.md` is authoritative for their public URL representation and follows the content model in the hierarchy.
+
+`99_AI_CONTEXT.md` is an operational collaboration guide, not an additional decision layer. It applies the hierarchy defined here and is subordinate to every applicable authoritative project document. Implementation remains the lowest layer.
+
+---
+
+# Document Status
+
+Status describes a document's maturity, not its position in the hierarchy. Authority is determined by subject responsibility and the hierarchy above.
+
+The statuses currently used by the project are:
+
+| Status | Meaning |
+|--------|---------|
+| Draft | The document is the current source for its subject, but its decisions remain provisional and may require explicit review before broad or difficult-to-reverse implementation. |
+| Living Document | The document is authoritative and expected to evolve through the change-management rules defined here. Its current version governs until deliberately revised. |
+
+A status change does not by itself alter a document's responsibility or create a second source of truth.
+
 ---
 
 # Cross References
@@ -198,7 +217,7 @@ Examples:
 | Subject | Authoritative Document |
 |----------|------------------------|
 | Vision | 00_Product_Vision.md |
-| Documentation Rules | 00.1_Documentation_Governance.md |
+| Documentation Rules | 00_1_Documentation_Governance.md |
 | Principles | 01_Principles.md |
 | Information Architecture | 02_Information_Architecture.md |
 | Content Taxonomy | 02_Information_Architecture.md |
@@ -206,11 +225,15 @@ Examples:
 | Editorial Rules | 04_Editorial_Guidelines.md |
 | Terminology | 05_Terminology.md |
 | Design Principles | 06_Design_System.md |
-| UI Components | 06.1_UI_Components.md |
+| UI Components | 06_1_UI_Components.md |
 | Technical Architecture | 07_Technical_Architecture.md |
-| Technology Decisions | 07.2_Framework_and_Platform_Decision.md |
+| Technical Stack | 07_1_Tech_Stack.md |
+| Technology Decisions | 07_2_Framework_and_Platform_Decision.md |
 | Deployment Workflow | 08_Deployment.md |
 | Project Evolution | 09_Roadmap.md |
+| Content Model | 10_Content_Model.md |
+| URL and Routing Strategy | 11_URL_and_Routing_Strategy.md |
+| AI Collaboration Guidance | 99_AI_CONTEXT.md |
 
 ---
 

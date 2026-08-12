@@ -21,7 +21,7 @@ The project combines theoretical research, practical experimentation and educati
 The repository is organized around four major areas:
 
 - architecture/ — Project architecture and governance
-- content/ — Essays, articles and journal entries
+- content/ — Multilingual Markdown content and supporting research
 - src/ — Website source code
 - public/ — Static assets
 
@@ -50,7 +50,7 @@ architecture/
     Project architecture and governance
 
 content/
-    Essays, articles, journal entries and pages
+    Multilingual Markdown content and supporting research
 
 src/
     Website source code
@@ -69,33 +69,7 @@ The website is a generated representation of that knowledge.
 
 # Content Types
 
-The project currently organizes knowledge into four categories.
-
-## Essays
-
-Theoretical foundations.
-
-Original long-form research.
-
----
-
-## Articles
-
-Educational publications designed to make ideas more accessible.
-
----
-
-## The Coherence Journal
-
-A public record of applying the theory in real-world situations.
-
-The journal documents both successful and unsuccessful experiments.
-
----
-
-## Research Notes
-
-Working ideas, observations and references that may eventually contribute to future publications.
+The canonical knowledge domains are Essays, Articles, The Coherence Journal, Research and Podcast. Their definitions and relationships are maintained in `architecture/02_Information_Architecture.md`; the purpose-based publishing model is maintained in `architecture/03_Content_Strategy.md`.
 
 ---
 
@@ -142,41 +116,7 @@ The website is only one possible representation of that content.
 
 Project documentation is located in the `architecture` directory.
 
-The recommended reading order is:
-
-```text
-00 Product Vision
-
-01 Principles
-
-02 Information Architecture
-
-03 Content Strategy
-
-04 Editorial Guidelines
-
-05 Terminology
-
-06 Design System
-
-06.1 UI Components
-
-07 Technical Architecture
-
-07.1 Technical Stack
-
-07.2 Framework and Platform Decision
-
-08 Deployment Workflow
-
-09 Roadmap
-
-10 Content Model
-
-11 URL and Routing Strategy
-```
-
-Each document builds upon the previous one.
+Documentation authority, status semantics and reading order are defined in `architecture/00_1_Documentation_Governance.md`. AI collaboration guidance is provided by `architecture/99_AI_CONTEXT.md` and remains subordinate to the authoritative project documentation.
 
 ---
 
@@ -197,9 +137,8 @@ The project values:
 
 The Coherence Project is intended to become a living knowledge platform.
 
-Future formats may include:
+Additional future formats may include:
 
-- Podcasts
 - Courses
 - Talks
 - Workshops

@@ -27,7 +27,7 @@ The objective is to maximize understanding.
 
 Not every piece of content has the same *purpose*, even when it belongs to the same domain.
 
-This document applies a purpose-based lens — Primary, Educational and Experimental — over the knowledge domains already defined in **02_Information_Architecture**. It does not introduce new content types; it explains why each domain exists.
+This document applies a purpose-based lens — Primary, Educational and Experimental — over the knowledge domains already defined in `02_Information_Architecture.md`. It does not introduce new content types; it explains why each domain exists.
 
 Each layer reinforces the others.
 
@@ -91,7 +91,7 @@ Entries should document both successful and unsuccessful outcomes.
 
 Research does not sit inside a single layer above — it feeds all three.
 
-Reading notes, references and open questions may evolve into primary, educational or experimental content over time (see 02_Information_Architecture → Content Relationships).
+Reading notes, references and open questions may evolve into primary, educational or experimental content over time (see `02_Information_Architecture.md` → Content Relationships).
 
 ---
 

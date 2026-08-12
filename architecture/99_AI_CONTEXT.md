@@ -49,21 +49,9 @@ When documentation is incomplete, AI should extend existing principles rather th
 
 # Decision Hierarchy
 
-When making decisions, follow this order of precedence:
+The authoritative decision hierarchy is defined in `00_1_Documentation_Governance.md` and should be referenced there rather than duplicated here.
 
-1. Product Vision
-2. Principles
-3. Information Architecture
-4. Content Strategy
-5. Editorial Guidelines
-6. Terminology
-7. Design System
-8. Technical Documentation
-9. Content Model
-10. URL and Routing Strategy
-11. Implementation
-
-Lower-level decisions must never contradict higher-level documents.
+This document provides operational guidance for AI collaboration. It is not an additional decision layer and cannot override an applicable authoritative project document. Implementation remains subordinate to the documented hierarchy.
 
 ---
 

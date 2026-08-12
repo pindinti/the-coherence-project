@@ -6,8 +6,8 @@ The documentation defines the project's vision, principles, information architec
 
 It is the authoritative source for implementation decisions.
 
-Recommended reading order:
+Document authority, responsibility, status semantics and reading order are defined in `00_1_Documentation_Governance.md`.
 
-00 → 99
+`99_AI_CONTEXT.md` provides operational guidance for AI collaboration after the applicable authoritative documents have been identified. It does not replace or override them.
 
 Implementation should follow the documented architecture.

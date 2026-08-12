@@ -76,8 +76,8 @@ The project provides a structured body of knowledge that combines:
 
 The project's content is organized into complementary layers — Essays, Articles, The Coherence Journal, Research, Podcast and a future Book.
 
-Full domain definitions and structure: see **02_Information_Architecture**.
-Purpose-based content hierarchy and editorial workflow: see **03_Content_Strategy**.
+Full domain definitions and structure: see `02_Information_Architecture.md`.
+Purpose-based content hierarchy and editorial workflow: see `03_Content_Strategy.md`.
 
 ---
 

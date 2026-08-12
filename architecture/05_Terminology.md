@@ -116,7 +116,7 @@ Framework
 
 **Disambiguation**
 
-This is the **conceptual/theoretical** use of the term. It is distinct from the **technical framework** (Astro) referenced in 07.2_Framework_and_Platform_Decision, which is a software tool, not an OC concept. Context makes the meaning clear in practice; this note exists only to prevent confusion when both documents are read together (e.g. by an AI assistant implementing the project).
+This is the **conceptual/theoretical** use of the term. It is distinct from the **technical framework** (Astro) referenced in `07_2_Framework_and_Platform_Decision.md`, which is a software tool, not an OC concept. Context makes the meaning clear in practice; this note exists only to prevent confusion when both documents are read together (e.g. by an AI assistant implementing the project).
 
 ---
 

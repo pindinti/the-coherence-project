@@ -7,7 +7,7 @@
 | Version | 0.2 |
 | Status | Draft |
 | Owner | Paulo Eduardo Pereira |
-| Last Updated | 2026-08-03 |
+| Last Updated | 2026-08-12 |
 
 ---
 
@@ -155,25 +155,13 @@ The styling architecture uses design tokens defined in CSS Custom Properties, ke
 
 GitHub Pages
 
-Rationale and requirements: see **07.2_Framework_and_Platform_Decision**.
+Rationale and requirements: see `07_2_Framework_and_Platform_Decision.md`.
 
 ---
 
 # Domain
 
-## Strategy
-
-The primary domain should represent the creator rather than a single project concept.
-
-Preferred approach:
-
-Personal domain.
-
-Reason:
-
-The Coherence Project may expand into different formats and initiatives.
-
-The personal identity should remain the long-term anchor.
+The production domain decision is defined in `07_2_Framework_and_Platform_Decision.md`.
 
 ---
 
@@ -198,7 +186,7 @@ Avoid vanity metrics as primary indicators.
 
 # Content Workflow
 
-Full workflow (write → commit → build → deploy → publish): see **08_Deployment**.
+Full workflow (write → commit → build → deploy → publish): see `08_Deployment.md`.
 
 ---
 
@@ -218,4 +206,4 @@ Future integrations should be evaluated according to project principles.
 
 # Technology Decision Rule
 
-Apply the **Decision Filter** defined in 01_Principles before adopting any new technology.
+Apply the **Decision Filter** defined in `01_Principles.md` before adopting any new technology.
