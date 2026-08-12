@@ -4,10 +4,9 @@
  *
  * Base HTML document structure shared by all pages.
  *
- * hreflang and canonical tags are rendered ONLY when `Astro.site` is
- * defined (i.e., the `site` property is set in astro.config.mjs).
- * This prevents invalid relative-URL references before the definitive
- * domain is chosen. Architecture ref: 11_URL_and_Routing_Strategy.md
+ * Canonical and hreflang metadata is generated from the production origin
+ * configured in astro.config.mjs. Architecture ref:
+ * 11_URL_and_Routing_Strategy.md
  */
 
 import '../styles/global.css';
@@ -23,7 +22,7 @@ interface Props {
   hreflangEn?: string;
   /** Path for the Portuguese hreflang alternate (e.g. "/pt/ensaios/slug") */
   hreflangPt?: string;
-  /** Canonical URL path (e.g. "/en/essays/slug") */
+  /** Canonical path or absolute URL override */
   canonical?: string;
 }
 
@@ -36,13 +35,11 @@ const {
   canonical,
 } = Astro.props;
 
-// Absolute URLs are constructed only when Astro.site is configured.
-// Until the definitive domain is set in astro.config.mjs via `site`,
-// hreflang and canonical tags are suppressed — not rendered as invalid
-// relative-URL references.
 const site = Astro.site;
-const abs = (path: string): string | null =>
-  site ? new URL(path, site).toString() : null;
+if (!site) {
+  throw new Error('Astro site must be configured for metadata generation.');
+}
+const abs = (url: string): string => new URL(url, site).toString();
 ---
 
 <!doctype html>
@@ -56,19 +53,17 @@ const abs = (path: string): string | null =>
     <title>{title}</title>
     <meta name="description" content={description} />
 
-    <!-- Canonical — requires site domain -->
-    {canonical && site && (
+    {canonical && (
       <link rel="canonical" href={abs(canonical)} />
     )}
 
-    <!-- hreflang alternates — rendered only when site domain is configured -->
-    {site && hreflangEn && (
+    {hreflangEn && (
       <link rel="alternate" hreflang="en" href={abs(hreflangEn)} />
     )}
-    {site && hreflangPt && (
+    {hreflangPt && (
       <link rel="alternate" hreflang="pt" href={abs(hreflangPt)} />
     )}
-    {site && (hreflangEn || hreflangPt) && (
+    {(hreflangEn || hreflangPt) && (
       <link rel="alternate" hreflang="x-default" href={site.toString()} />
     )}
 

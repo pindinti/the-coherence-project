@@ -56,8 +56,7 @@ const { Content } = await render(essay);
 
 const slug = essay.id.split('/').pop()!;
 const ptPath = `/pt/ensaios/${slug}`;
-// Fall back to EN homepage if no translation is available
-const enPath = enSlug ? `/en/essays/${enSlug}` : '/en/';
+const enPath = enSlug ? `/en/essays/${enSlug}` : undefined;
 ---
 
 <EssayLayout
@@ -69,6 +68,7 @@ const enPath = enSlug ? `/en/essays/${enSlug}` : '/en/';
   language="pt"
   hreflangEn={enPath}
   hreflangPt={ptPath}
+  canonical={essay.data.canonicalUrl ?? ptPath}
 >
   <Content />
 </EssayLayout>

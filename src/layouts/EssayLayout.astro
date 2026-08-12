@@ -31,6 +31,8 @@ interface Props {
   hreflangEn?: string;
   /** Path for PT hreflang (e.g. "/pt/ensaios/slug") */
   hreflangPt?: string;
+  /** Canonical path or absolute URL override */
+  canonical?: string;
 }
 
 const {
@@ -42,6 +44,7 @@ const {
   language,
   hreflangEn,
   hreflangPt,
+  canonical,
 } = Astro.props;
 
 const locale = language === 'pt' ? 'pt-BR' : 'en-US';
@@ -58,6 +61,7 @@ const dateFormatted = date.toLocaleDateString(locale, {
   lang={language}
   hreflangEn={hreflangEn}
   hreflangPt={hreflangPt}
+  canonical={canonical}
 >
   <div class="essay-wrapper">
     <article class="essay">
