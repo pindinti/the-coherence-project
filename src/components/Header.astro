@@ -1,0 +1,68 @@
+---
+import LanguageSelector from './LanguageSelector.astro';
+
+interface Props {
+  currentLanguage?: 'en' | 'pt';
+  englishPath?: string;
+  portuguesePath?: string;
+  homePath: string;
+}
+
+const {
+  currentLanguage,
+  englishPath,
+  portuguesePath,
+  homePath,
+} = Astro.props;
+---
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-header__identity" href={homePath}>
+      The Coherence Project
+    </a>
+
+    <div class="site-header__language">
+      <LanguageSelector
+        currentLanguage={currentLanguage}
+        englishPath={englishPath}
+        portuguesePath={portuguesePath}
+      />
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    padding: var(--space-6);
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    max-width: var(--max-width-content);
+    margin-inline: auto;
+  }
+
+  .site-header__identity {
+    color: var(--color-text-primary);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    text-decoration: none;
+  }
+
+  .site-header__language {
+    margin-left: auto;
+  }
+
+  @media (max-width: 768px) {
+    .site-header {
+      padding: var(--space-4);
+    }
+
+    .site-header__inner {
+      flex-wrap: wrap;
+    }
+  }
+</style>

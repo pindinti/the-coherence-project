@@ -10,7 +10,7 @@
  */
 
 import '../styles/global.css';
-import LanguageSelector from '../components/LanguageSelector.astro';
+import Header from '../components/Header.astro';
 
 interface Props {
   /** Page title — rendered in <title> and og:title */
@@ -52,6 +52,7 @@ const currentLanguage = Astro.url.pathname.startsWith('/pt/')
   : Astro.url.pathname.startsWith('/en/')
     ? 'en'
     : undefined;
+const homePath = currentLanguage ? `/${currentLanguage}/` : '/';
 ---
 
 <!doctype html>
@@ -88,10 +89,11 @@ const currentLanguage = Astro.url.pathname.startsWith('/pt/')
     />
   </head>
   <body>
-    <LanguageSelector
+    <Header
       currentLanguage={currentLanguage}
       englishPath={languagePathEn}
       portuguesePath={languagePathPt}
+      homePath={homePath}
     />
     <slot />
   </body>
