@@ -123,10 +123,11 @@ The project uses one logical Astro collection named `content` across the languag
 
 Public paths are independent of the collection structure and are defined exclusively in `11_URL_and_Routing_Strategy.md`.
 
-In Astro (`src/content/config.ts`), the collection and canonical schema are defined using Zod as follows:
+Because canonical content remains in the repository-root `content/` directory, Astro loads it through the Content Layer API. In `src/content/config.ts`, the single collection and canonical schema are defined using Zod as follows:
 
 ```typescript
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 const contentSchema = z.object({
   title: z.string(),
@@ -147,7 +148,10 @@ const contentSchema = z.object({
 
 export const collections = {
   content: defineCollection({
-    type: 'content',
+    loader: glob({
+      pattern: ['**/*.md', '!**/README.md'],
+      base: './content',
+    }),
     schema: contentSchema,
   }),
 };

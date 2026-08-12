@@ -6,8 +6,8 @@
  * files from content/ at the repository root, keeping that directory
  * fully independent from the Astro source layer in src/.
  *
- * 10 collections: 5 content types x 2 languages (en / pt)
- * All collections share the canonical contentSchema defined below.
+ * One logical `content` collection spans all content types and both
+ * languages. Language and type are defined by canonical frontmatter.
  *
  * README.md placeholder files in each content directory are excluded
  * via the README.md negation pattern.
@@ -41,60 +41,13 @@ const contentSchema = z.object({
 const MD_PATTERN = ['**/*.md', '!**/README.md'];
 
 // -------------------------------------------------------------
-// Collections
-// Physical path -> collection name mapping:
-// content/en/essays   -> essays-en
-// content/pt/essays   -> essays-pt
-// content/en/articles -> articles-en
-// content/pt/articles -> articles-pt
-// content/en/journal  -> journal-en
-// content/pt/journal  -> journal-pt
-// content/en/research -> research-en
-// content/pt/research -> research-pt
-// content/en/pages    -> pages-en
-// content/pt/pages    -> pages-pt
-//
-// URL mapping: see architecture/11_URL_and_Routing_Strategy.md
+// Collection
+// Physical organization remains content/<language>/<type>/.
+// Public URL mapping is defined in architecture/11_URL_and_Routing_Strategy.md.
 // -------------------------------------------------------------
 export const collections = {
-  'essays-en': defineCollection({
-    loader: glob({ pattern: MD_PATTERN, base: './content/en/essays' }),
-    schema: contentSchema,
-  }),
-  'essays-pt': defineCollection({
-    loader: glob({ pattern: MD_PATTERN, base: './content/pt/essays' }),
-    schema: contentSchema,
-  }),
-  'articles-en': defineCollection({
-    loader: glob({ pattern: MD_PATTERN, base: './content/en/articles' }),
-    schema: contentSchema,
-  }),
-  'articles-pt': defineCollection({
-    loader: glob({ pattern: MD_PATTERN, base: './content/pt/articles' }),
-    schema: contentSchema,
-  }),
-  'journal-en': defineCollection({
-    loader: glob({ pattern: MD_PATTERN, base: './content/en/journal' }),
-    schema: contentSchema,
-  }),
-  'journal-pt': defineCollection({
-    loader: glob({ pattern: MD_PATTERN, base: './content/pt/journal' }),
-    schema: contentSchema,
-  }),
-  'research-en': defineCollection({
-    loader: glob({ pattern: MD_PATTERN, base: './content/en/research' }),
-    schema: contentSchema,
-  }),
-  'research-pt': defineCollection({
-    loader: glob({ pattern: MD_PATTERN, base: './content/pt/research' }),
-    schema: contentSchema,
-  }),
-  'pages-en': defineCollection({
-    loader: glob({ pattern: MD_PATTERN, base: './content/en/pages' }),
-    schema: contentSchema,
-  }),
-  'pages-pt': defineCollection({
-    loader: glob({ pattern: MD_PATTERN, base: './content/pt/pages' }),
+  content: defineCollection({
+    loader: glob({ pattern: MD_PATTERN, base: './content' }),
     schema: contentSchema,
   }),
 };

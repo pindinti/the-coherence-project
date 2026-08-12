@@ -10,8 +10,13 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const essays = (await getCollection('essays-pt'))
-  .filter((entry) => entry.data.status === 'published')
+const essays = (await getCollection('content'))
+  .filter(
+    (entry) =>
+      entry.data.language === 'pt' &&
+      entry.data.type === 'essay' &&
+      entry.data.status === 'published',
+  )
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
@@ -34,7 +39,7 @@ const essays = (await getCollection('essays-pt'))
       {essays.length > 0 ? (
         <ul class="essay-list" role="list">
           {essays.map((essay) => {
-            const slug = essay.id.replace(/\.md$/, '');
+            const slug = essay.id.split('/').pop()!;
             return (
               <li class="essay-item">
                 <a href={`/pt/ensaios/${slug}`} class="essay-link">

@@ -3,11 +3,11 @@
  * EN Essay Dynamic Route — /en/essays/[slug]
  * The Coherence Project
  *
- * Generates one static page per published essay in the `essays-en` collection.
+ * Generates one static page per published English essay in the `content` collection.
  * Resolves the corresponding Portuguese translation via `translationId` to
  * populate the hreflang PT alternate.
  *
- * Architecture ref: 11_URL_and_Routing_Strategy.md — Internal Collection vs URL Mapping
+ * Architecture ref: 11_URL_and_Routing_Strategy.md — Content Directory vs URL Mapping
  */
 
 import type { CollectionEntry } from 'astro:content';
@@ -15,19 +15,29 @@ import { getCollection, render } from 'astro:content';
 import EssayLayout from '../../../layouts/EssayLayout.astro';
 
 export async function getStaticPaths() {
-  const essaysEn = await getCollection('essays-en');
-  const essaysPt = await getCollection('essays-pt');
+  const content = await getCollection('content');
+  const essaysEn = content.filter(
+    (entry) =>
+      entry.data.language === 'en' &&
+      entry.data.type === 'essay' &&
+      entry.data.status === 'published',
+  );
+  const essaysPt = content.filter(
+    (entry) =>
+      entry.data.language === 'pt' &&
+      entry.data.type === 'essay' &&
+      entry.data.status === 'published',
+  );
 
   return essaysEn.map((essay) => {
-    // Strip .md extension to produce the URL slug
-    const slug = essay.id.replace(/\.md$/, '');
+    const slug = essay.id.split('/').pop()!;
 
     // Locate the matching PT translation via translationId
     const ptMatch = essay.data.translationId
       ? essaysPt.find((pt) => pt.data.translationId === essay.data.translationId)
       : undefined;
 
-    const ptSlug = ptMatch ? ptMatch.id.replace(/\.md$/, '') : undefined;
+    const ptSlug = ptMatch ? ptMatch.id.split('/').pop()! : undefined;
 
     return {
       params: { slug },
@@ -37,14 +47,14 @@ export async function getStaticPaths() {
 }
 
 interface Props {
-  essay: CollectionEntry<'essays-en'>;
+  essay: CollectionEntry<'content'>;
   ptSlug?: string;
 }
 
 const { essay, ptSlug } = Astro.props;
 const { Content } = await render(essay);
 
-const slug = essay.id.replace(/\.md$/, '');
+const slug = essay.id.split('/').pop()!;
 const enPath = `/en/essays/${slug}`;
 // Fall back to PT homepage if no translation is available
 const ptPath = ptSlug ? `/pt/ensaios/${ptSlug}` : '/pt/';
