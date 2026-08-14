@@ -52,9 +52,10 @@ A diferença é que agora a investigação está aberta.
 
 ## Um pouco sobre mim
 
+<div class="profile-introduction">
 <img class="profile-portrait" src="/images/about/paulo-pereira.jpg" alt="Paulo Eduardo Pereira" width="128" height="128">
-
-Sou profissional de operações, transformação e produtos. Comecei minha carreira na indústria, trabalhando com qualidade e melhoria contínua, e desde então passei por diferentes contextos — do chão de fábrica e gestão de processos à tecnologia, consultoria e empreendedorismo.
+<p>Sou profissional de operações, transformação e produtos. Comecei minha carreira na indústria, trabalhando com qualidade e melhoria contínua, e desde então passei por diferentes contextos — do chão de fábrica e gestão de processos à tecnologia, consultoria e empreendedorismo.</p>
+</div>
 
 Durante dez anos, construí e operei a **Não de Queijo**, uma empresa de alimentos que nasceu na cozinha e me levou a trabalhar com produto, produção, varejo, tecnologia e inclusão alimentar. Também participei de projetos de transformação organizacional, desenvolvimento de sistemas e novos produtos.
 

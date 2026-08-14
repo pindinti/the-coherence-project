@@ -96,6 +96,18 @@ const {
     object-fit: cover;
   }
 
+  .page-body :global(.profile-introduction) {
+    display: grid;
+    grid-template-columns: 128px minmax(0, 1fr);
+    gap: var(--space-6);
+    align-items: start;
+  }
+
+  .page-body :global(.profile-introduction .profile-portrait) {
+    float: none;
+    margin: 0;
+  }
+
   @media (max-width: 768px) {
     .page-wrapper {
       padding: var(--space-8) var(--space-4);
@@ -109,6 +121,15 @@ const {
       width: 96px;
       height: 96px;
       margin-right: var(--space-4);
+    }
+
+    .page-body :global(.profile-introduction) {
+      display: flow-root;
+    }
+
+    .page-body :global(.profile-introduction .profile-portrait) {
+      float: left;
+      margin: 0 var(--space-4) var(--space-4) 0;
     }
   }
 </style>

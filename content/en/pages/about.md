@@ -51,9 +51,10 @@ The difference is that now the investigation is open.
 
 ## A little about me
 
+<div class="profile-introduction">
 <img class="profile-portrait" src="/images/about/paulo-pereira.jpg" alt="Paulo Eduardo Pereira" width="128" height="128">
-
-I work across operations, transformation, and product. I started my career in manufacturing, working with quality and continuous improvement, and since then have worked in very different contexts — from the factory floor and process management to technology, consulting, and entrepreneurship.
+<p>I work across operations, transformation, and product. I started my career in manufacturing, working with quality and continuous improvement, and since then have worked in very different contexts — from the factory floor and process management to technology, consulting, and entrepreneurship.</p>
+</div>
 
 For ten years, I built and operated **Não de Queijo**, a food company that started in the kitchen and led me to work across product, production, retail, technology, and food inclusion.
 
