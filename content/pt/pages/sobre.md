@@ -60,3 +60,12 @@ A diferença é que agora a investigação está aberta.
 Durante dez anos, construí e operei a **Não de Queijo**, uma empresa de alimentos que nasceu na cozinha e me levou a trabalhar com produto, produção, varejo, tecnologia e inclusão alimentar. Também participei de projetos de transformação organizacional, desenvolvimento de sistemas e novos produtos.
 
 Gosto de entender como as coisas funcionam, por que deixam de funcionar e o que acontece quando tentamos mudá-las. Talvez seja esse o fio que conecta os diferentes trabalhos que fiz — e também o que me trouxe até aqui.
+
+
+## Contato
+
+Se quiser conversar sobre o projeto, pesquisa ou trabalho, você pode me encontrar por aqui:
+
+[Email](mailto:pauloelp@gmail.com)
+
+<a href="https://www.linkedin.com/in/paulo-e-l-pereira/?locale=pt-BR" target="_blank" rel="noopener noreferrer">LinkedIn</a>

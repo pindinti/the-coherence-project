@@ -59,3 +59,12 @@ The difference is that now the investigation is open.
 For ten years, I built and operated **Não de Queijo**, a food company that started in the kitchen and led me to work across product, production, retail, technology, and food inclusion.
 
 I like understanding how things work, why they stop working, and what happens when we try to change them. Perhaps that is the thread connecting the different kinds of work I have done — and what brought me here.
+
+
+## Contact
+
+If you'd like to talk about the project, research, or work, you can find me here:
+
+[Email](mailto:pauloelp@gmail.com)
+
+<a href="https://www.linkedin.com/in/paulo-e-l-pereira/?locale=en-US" target="_blank" rel="noopener noreferrer">LinkedIn</a>
