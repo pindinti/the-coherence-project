@@ -66,6 +66,4 @@ Gosto de entender como as coisas funcionam, por que deixam de funcionar e o que 
 
 Se quiser conversar sobre o projeto, pesquisa ou trabalho, você pode me encontrar por aqui:
 
-[Email](mailto:pauloelp@gmail.com)
-
-<a href="https://www.linkedin.com/in/paulo-e-l-pereira/?locale=pt-BR" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+[Email](mailto:pauloelp@gmail.com)  |  <a href="https://www.linkedin.com/in/paulo-e-l-pereira/?locale=pt-BR" target="_blank" rel="noopener noreferrer">LinkedIn</a>

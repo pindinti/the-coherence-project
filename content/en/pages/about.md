@@ -65,6 +65,4 @@ I like understanding how things work, why they stop working, and what happens wh
 
 If you'd like to talk about the project, research, or work, you can find me here:
 
-[Email](mailto:pauloelp@gmail.com)
-
-<a href="https://www.linkedin.com/in/paulo-e-l-pereira/?locale=en-US" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+[Email](mailto:pauloelp@gmail.com)  |  <a href="https://www.linkedin.com/in/paulo-e-l-pereira/?locale=en-US" target="_blank" rel="noopener noreferrer">LinkedIn</a>
