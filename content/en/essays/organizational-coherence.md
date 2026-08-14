@@ -250,6 +250,10 @@ The second is the strategic cycle. It moves from execution to learning to evolut
 
 Both cycles are necessary. Neither is sufficient alone.
 
+![Figure 1. The Organizational Coherence Model.](/images/essays/organizational-coherence/figure-01-coherence-model.png)
+
+*Figure 1. The Organizational Coherence Model.*
+
 The two cycles are not symmetric in importance. They are asymmetric in visibility. One dominates organizational attention by structure — not by choice.
 
 ---
@@ -267,6 +271,10 @@ Fast feedback systems train organizations to respond. Slow feedback systems requ
 As organizations grow and execution scales, the operational cycle's demand for attention grows with it. More customers mean more complexity. More complexity means more coordination. More coordination means less space for the slower, quieter work of strategic reflection.
 
 The strategic cycle does not disappear. It is displaced.
+
+![Figure 2. Coherence in Motion.](/images/essays/organizational-coherence/figure-02-coherence-in-motion.png)
+
+*Figure 2. Coherence in Motion.*
 
 ---
 
@@ -391,6 +399,10 @@ The organization responded immediately.
 The channel grew 270% in twelve months.
 
 Only then did it become clear that the architecture had been correct all along — but incomplete.
+
+![Figure 3. Capability expanded. Promise unchanged.](/images/essays/organizational-coherence/figure-03-an-organization-as-laboratory.png)
+
+*Figure 3. Capability expanded. Promise unchanged.*
 
 The promise was real. The product delivered on it. The customers who reached the organization responded to it.
 

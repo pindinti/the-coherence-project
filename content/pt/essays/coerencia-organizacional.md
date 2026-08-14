@@ -248,6 +248,10 @@ O segundo é o ciclo estratégico. Ele se move de execução a aprendizado a evo
 
 Ambos os ciclos são necessários. Nenhum é suficiente sozinho.
 
+![Figura 1. O Modelo da Coerência Organizacional.](/images/essays/coerencia-organizacional/figura-01-o-modelo-da-coerencia-organizacional.png)
+
+*Figura 1. O Modelo da Coerência Organizacional.*
+
 Os dois ciclos não são simétricos em importância. São assimétricos em visibilidade. Um domina a atenção organizacional por estrutura — não por escolha.
 
 ---
@@ -265,6 +269,10 @@ Sistemas de feedback rápido treinam organizações para responder. Sistemas de 
 À medida que as organizações crescem e a execução escala, a demanda do ciclo operacional por atenção cresce junto. Mais clientes significam mais complexidade. Mais complexidade significa mais coordenação. Mais coordenação significa menos espaço para o trabalho mais lento e silencioso da reflexão estratégica.
 
 O ciclo estratégico não desaparece. É deslocado.
+
+![Figura 2. Coerência em Movimento.](/images/essays/coerencia-organizacional/figura-02-coerencia-em-movimento.png)
+
+*Figura 2. Coerência em Movimento.*
 
 ---
 
@@ -389,6 +397,10 @@ A organização respondeu imediatamente.
 O canal cresceu 270% em doze meses.
 
 Só então ficou claro que a arquitetura havia estado correta o tempo todo — mas incompleta.
+
+![Figura 3. Capacidade expandida. Promessa inalterada.](/images/essays/coerencia-organizacional/figura-03-uma-organizacao-como-laboratorio.png)
+
+*Figura 3. Capacidade expandida. Promessa inalterada.*
 
 A promessa era real. O produto a cumpria. Os clientes que chegavam à organização respondiam a ela.
 

@@ -1,0 +1,41 @@
+---
+import { getCollection, render } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+
+const content = await getCollection('content');
+const page = content.find((entry) =>
+  entry.data.language === 'en' &&
+  entry.data.type === 'page' &&
+  entry.data.status === 'published' &&
+  entry.data.translationId === 'page-about'
+);
+
+if (!page) {
+  throw new Error('Published English About page not found.');
+}
+
+const portuguesePage = content.find((entry) =>
+  entry.data.language === 'pt' &&
+  entry.data.type === 'page' &&
+  entry.data.status === 'published' &&
+  entry.data.translationId === page.data.translationId
+);
+
+const { Content } = await render(page);
+const enPath = '/en/about';
+const ptPath = portuguesePage ? '/sobre' : undefined;
+---
+
+<PageLayout
+  title={page.data.title}
+  subtitle={page.data.subtitle}
+  description={page.data.description}
+  language="en"
+  canonical={page.data.canonicalUrl ?? enPath}
+  hreflangEn={enPath}
+  hreflangPt={ptPath}
+  languagePathEn={enPath}
+  languagePathPt={ptPath ?? '/'}
+>
+  <Content />
+</PageLayout>
