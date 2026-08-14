@@ -47,3 +47,14 @@ The project is therefore a continuation of the work I have been doing for years 
 I am still trying to understand how organizations work.
 
 The difference is that now the investigation is open.
+
+
+## A little about me
+
+<img class="profile-portrait" src="/images/about/paulo-pereira.jpg" alt="Paulo Eduardo Pereira" width="128" height="128">
+
+I work across operations, transformation, and product. I started my career in manufacturing, working with quality and continuous improvement, and since then have worked in very different contexts — from the factory floor and process management to technology, consulting, and entrepreneurship.
+
+For ten years, I built and operated **Não de Queijo**, a food company that started in the kitchen and led me to work across product, production, retail, technology, and food inclusion.
+
+I like understanding how things work, why they stop working, and what happens when we try to change them. Perhaps that is the thread connecting the different kinds of work I have done — and what brought me here.

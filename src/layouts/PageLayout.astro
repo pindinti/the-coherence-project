@@ -87,6 +87,15 @@ const {
     margin-top: var(--space-8);
   }
 
+  .page-body :global(.profile-portrait) {
+    float: left;
+    width: 128px;
+    height: 128px;
+    margin: 0 var(--space-6) var(--space-4) 0;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
   @media (max-width: 768px) {
     .page-wrapper {
       padding: var(--space-8) var(--space-4);
@@ -94,6 +103,12 @@ const {
 
     .page-header h1 {
       font-size: var(--text-3xl);
+    }
+
+    .page-body :global(.profile-portrait) {
+      width: 96px;
+      height: 96px;
+      margin-right: var(--space-4);
     }
   }
 </style>

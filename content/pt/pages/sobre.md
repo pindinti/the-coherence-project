@@ -48,3 +48,14 @@ O projeto é, portanto, uma continuação do trabalho que venho fazendo há anos
 Continuo tentando entender como organizações funcionam.
 
 A diferença é que agora a investigação está aberta.
+
+
+## Um pouco sobre mim
+
+<img class="profile-portrait" src="/images/about/paulo-pereira.jpg" alt="Paulo Eduardo Pereira" width="128" height="128">
+
+Sou profissional de operações, transformação e produtos. Comecei minha carreira na indústria, trabalhando com qualidade e melhoria contínua, e desde então passei por diferentes contextos — do chão de fábrica e gestão de processos à tecnologia, consultoria e empreendedorismo.
+
+Durante dez anos, construí e operei a **Não de Queijo**, uma empresa de alimentos que nasceu na cozinha e me levou a trabalhar com produto, produção, varejo, tecnologia e inclusão alimentar. Também participei de projetos de transformação organizacional, desenvolvimento de sistemas e novos produtos.
+
+Gosto de entender como as coisas funcionam, por que deixam de funcionar e o que acontece quando tentamos mudá-las. Talvez seja esse o fio que conecta os diferentes trabalhos que fiz — e também o que me trouxe até aqui.
