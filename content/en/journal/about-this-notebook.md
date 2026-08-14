@@ -1,10 +1,15 @@
 ---
-title: About this notebook
-description: A record of an ongoing investigation into organizational coherence, documenting how theory guides decisions, practice reveals consequences, and working hypotheses evolve.
+title: "About this notebook"
+description: "A record of an ongoing investigation into organizational coherence, documenting how theory guides decisions, practice reveals consequences, and working hypotheses evolve."
 date: 2026-07-31
 language: en
 type: journal
 status: published
+author: "Paulo Eduardo Pereira"
+tags:
+  - organizational coherence
+  - research journal
+  - methodology
 ---
 
 This notebook records a research program.

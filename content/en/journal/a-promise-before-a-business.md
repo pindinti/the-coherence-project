@@ -5,8 +5,13 @@ date: 2026-08-01
 language: en
 type: journal
 status: published
+author: "Paulo Eduardo Pereira"
+tags:
+  - organizational coherence
+  - Fresquinhos
+  - promise
+  - laboratory
 ---
-
 
 ## Laboratory
 
