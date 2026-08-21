@@ -42,14 +42,14 @@ const labels = language === 'pt'
     <div class="reading-navigation__adjacent">
       {previous && (
         <a href={previous.href}>
-          <span>{labels.previous}</span>
-          <span>{previous.title}</span>
+          <span class="reading-navigation__label">{labels.previous}</span>
+          <span class="reading-navigation__title">{previous.title}</span>
         </a>
       )}
       {next && (
         <a href={next.href}>
-          <span>{labels.next}</span>
-          <span>{next.title}</span>
+          <span class="reading-navigation__label">{labels.next}</span>
+          <span class="reading-navigation__title">{next.title}</span>
         </a>
       )}
     </div>
@@ -66,7 +66,13 @@ const labels = language === 'pt'
   }
 
   .reading-navigation__back {
+    color: var(--color-text-secondary);
     font-weight: var(--weight-medium);
+    text-decoration: none;
+  }
+
+  .reading-navigation__back:hover {
+    color: var(--color-accent-hover);
   }
 
   .reading-navigation__adjacent {
@@ -80,6 +86,12 @@ const labels = language === 'pt'
     display: flex;
     flex-direction: column;
     gap: var(--space-1);
+    color: var(--color-text-primary);
+    text-decoration: none;
+  }
+
+  .reading-navigation__adjacent a:hover {
+    color: var(--color-accent-hover);
   }
 
   .reading-navigation__adjacent a:last-child {
@@ -87,9 +99,14 @@ const labels = language === 'pt'
     text-align: right;
   }
 
-  .reading-navigation__adjacent span:first-child {
+  .reading-navigation__label {
     color: var(--color-text-muted);
     font-size: var(--text-xs);
+  }
+
+  .reading-navigation__title {
+    font-size: var(--text-base);
+    font-weight: var(--weight-medium);
   }
 
   @media (max-width: 768px) {
