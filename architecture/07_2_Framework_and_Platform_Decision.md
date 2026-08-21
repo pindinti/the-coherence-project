@@ -7,7 +7,7 @@
 | Version | 0.1 |
 | Status | Draft |
 | Owner | Paulo Eduardo Pereira |
-| Last Updated | 2026-08-12 |
+| Last Updated | 2026-08-21 |
 
 ---
 
@@ -40,6 +40,12 @@ GitHub Pages
 Selected:
 
 https://paulopereira.net.br
+
+## Website Analytics
+
+Selected:
+
+Cloudflare Web Analytics
 
 ---
 
@@ -139,6 +145,36 @@ https://paulopereira.net.br
 ## Reasoning
 
 The selected domain represents the creator rather than a single project concept. It provides a stable long-term anchor for The Coherence Project and future initiatives while preserving the project's current content-focused architecture.
+
+---
+
+# Website Analytics Decision
+
+## Selected Solution
+
+Cloudflare Web Analytics is the current first-party website analytics solution.
+
+It is used through its client-side beacon for basic, aggregate visibility into website usage, including page views, visited pages, traffic or referral sources where available, aggregate geographic, device, and browser information where available, and service-provided web performance metrics.
+
+## Reasoning
+
+The project needs lightweight evidence about how its published knowledge platform is used without adding analytics complexity beyond current product needs.
+
+The analytics approach should remain privacy-oriented and focused on learning rather than attention optimization. It must not introduce cookies solely for the current analytics implementation.
+
+## Architectural Boundaries
+
+Cloudflare Web Analytics is an analytics service only. It does not change the production site's GitHub Pages hosting, production domain, DNS, content routing, or deployment architecture.
+
+The beacon should be integrated centrally through the shared site layout or infrastructure, rather than duplicated across pages. The analytics layer must not alter content routing or editorial behavior.
+
+## Scope and Future Review
+
+This adoption covers basic website analytics only. It does not establish Cloudflare as the permanent or exclusive analytics platform, and it does not introduce custom event measurement.
+
+Event-level measurement, such as email contact clicks, LinkedIn profile clicks, outbound Article clicks, or language-switch interactions, may be considered only when a demonstrated measurement need arises. Any future event analytics decision should follow the project's preference for the smallest adequate solution.
+
+This decision should be revisited if basic aggregate analytics no longer meets a demonstrated measurement need or if its privacy, maintenance, or architectural fit materially changes.
 
 ---
 

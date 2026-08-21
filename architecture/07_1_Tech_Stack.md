@@ -7,7 +7,7 @@
 | Version | 0.2 |
 | Status | Draft |
 | Owner | Paulo Eduardo Pereira |
-| Last Updated | 2026-08-12 |
+| Last Updated | 2026-08-21 |
 
 ---
 
@@ -167,20 +167,17 @@ The production domain decision is defined in `07_2_Framework_and_Platform_Decisi
 
 # Analytics
 
-## Approach
+## Current Solution
 
-Analytics should be privacy-conscious and focused on learning.
+Cloudflare Web Analytics is the current first-party website analytics solution. The authoritative technology decision and its review conditions are defined in `07_2_Framework_and_Platform_Decision.md`.
 
-Metrics should support understanding user behavior rather than optimizing attention.
+Its client-side beacon should be integrated once through shared site layout or infrastructure so that all current page types are covered consistently. Analytics must remain centralized, must not alter content routing or editorial behavior, and must not introduce cookies solely for this implementation.
 
-Potential metrics:
+The production site continues to be hosted on GitHub Pages; Cloudflare Web Analytics does not change hosting, DNS, routing, or deployment architecture.
 
-- Content access.
-- Reading behavior.
-- Geographic reach.
-- Language distribution.
+Implementation-specific beacon identifiers belong only in implementation markup, where they are necessarily public in generated HTML.
 
-Avoid vanity metrics as primary indicators.
+Custom event measurement is not part of the current adoption. Future event analytics should be introduced only for a demonstrated measurement need and by selecting the smallest adequate solution.
 
 ---
 
