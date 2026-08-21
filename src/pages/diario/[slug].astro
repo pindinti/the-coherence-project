@@ -9,21 +9,36 @@ export async function getStaticPaths() {
     entry.data.language === 'pt' &&
     entry.data.type === 'journal' &&
     entry.data.status === 'published'
-  );
+  ).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
   const entriesEn = content.filter((entry) =>
     entry.data.language === 'en' &&
     entry.data.type === 'journal' &&
     entry.data.status === 'published'
   );
 
-  return entriesPt.map((entry) => {
+  return entriesPt.map((entry, index) => {
     const enMatch = entry.data.translationId
       ? entriesEn.find((candidate) => candidate.data.translationId === entry.data.translationId)
       : undefined;
 
     return {
       params: { slug: entry.id.split('/').pop()! },
-      props: { entry, enSlug: enMatch?.id.split('/').pop() },
+      props: {
+        entry,
+        enSlug: enMatch?.id.split('/').pop(),
+        previous: entriesPt[index + 1]
+          ? {
+              href: `/diario/${entriesPt[index + 1].id.split('/').pop()!}`,
+              title: entriesPt[index + 1].data.title,
+            }
+          : undefined,
+        next: entriesPt[index - 1]
+          ? {
+              href: `/diario/${entriesPt[index - 1].id.split('/').pop()!}`,
+              title: entriesPt[index - 1].data.title,
+            }
+          : undefined,
+      },
     };
   });
 }
@@ -31,9 +46,11 @@ export async function getStaticPaths() {
 interface Props {
   entry: CollectionEntry<'content'>;
   enSlug?: string;
+  previous?: { href: string; title: string };
+  next?: { href: string; title: string };
 }
 
-const { entry, enSlug } = Astro.props;
+const { entry, enSlug, previous, next } = Astro.props;
 const { Content } = await render(entry);
 const slug = entry.id.split('/').pop()!;
 const ptPath = `/diario/${slug}`;
@@ -52,6 +69,13 @@ const enPath = enSlug ? `/en/journal/${enSlug}` : undefined;
   hreflangPt={ptPath}
   languagePathEn={enPath ?? '/en/'}
   languagePathPt={ptPath}
+  readingNavigation={{
+    collection: 'journal',
+    language: 'pt',
+    backHref: '/diario/',
+    previous,
+    next,
+  }}
 >
   <Content />
 </PublicationLayout>

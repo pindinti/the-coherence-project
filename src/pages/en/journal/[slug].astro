@@ -9,21 +9,36 @@ export async function getStaticPaths() {
     entry.data.language === 'en' &&
     entry.data.type === 'journal' &&
     entry.data.status === 'published'
-  );
+  ).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
   const entriesPt = content.filter((entry) =>
     entry.data.language === 'pt' &&
     entry.data.type === 'journal' &&
     entry.data.status === 'published'
   );
 
-  return entriesEn.map((entry) => {
+  return entriesEn.map((entry, index) => {
     const ptMatch = entry.data.translationId
       ? entriesPt.find((candidate) => candidate.data.translationId === entry.data.translationId)
       : undefined;
 
     return {
       params: { slug: entry.id.split('/').pop()! },
-      props: { entry, ptSlug: ptMatch?.id.split('/').pop() },
+      props: {
+        entry,
+        ptSlug: ptMatch?.id.split('/').pop(),
+        previous: entriesEn[index + 1]
+          ? {
+              href: `/en/journal/${entriesEn[index + 1].id.split('/').pop()!}`,
+              title: entriesEn[index + 1].data.title,
+            }
+          : undefined,
+        next: entriesEn[index - 1]
+          ? {
+              href: `/en/journal/${entriesEn[index - 1].id.split('/').pop()!}`,
+              title: entriesEn[index - 1].data.title,
+            }
+          : undefined,
+      },
     };
   });
 }
@@ -31,9 +46,11 @@ export async function getStaticPaths() {
 interface Props {
   entry: CollectionEntry<'content'>;
   ptSlug?: string;
+  previous?: { href: string; title: string };
+  next?: { href: string; title: string };
 }
 
-const { entry, ptSlug } = Astro.props;
+const { entry, ptSlug, previous, next } = Astro.props;
 const { Content } = await render(entry);
 const slug = entry.id.split('/').pop()!;
 const enPath = `/en/journal/${slug}`;
@@ -52,6 +69,13 @@ const ptPath = ptSlug ? `/diario/${ptSlug}` : undefined;
   hreflangPt={ptPath}
   languagePathEn={enPath}
   languagePathPt={ptPath ?? '/'}
+  readingNavigation={{
+    collection: 'journal',
+    language: 'en',
+    backHref: '/en/journal/',
+    previous,
+    next,
+  }}
 >
   <Content />
 </PublicationLayout>

@@ -13,6 +13,7 @@
  */
 
 import BaseLayout from './BaseLayout.astro';
+import ReadingNavigation from '../components/ReadingNavigation.astro';
 
 interface Props {
   /** Essay title — used in <title> tag and SEO; not rendered as visible H1 */
@@ -37,6 +38,14 @@ interface Props {
   languagePathEn?: string;
   /** Destination for the Portuguese language selector link */
   languagePathPt?: string;
+  /** End-of-content navigation within the current collection */
+  readingNavigation?: {
+    collection: 'essays' | 'articles' | 'journal';
+    language: 'en' | 'pt';
+    backHref: string;
+    previous?: { href: string; title: string };
+    next?: { href: string; title: string };
+  };
 }
 
 const {
@@ -51,6 +60,7 @@ const {
   canonical,
   languagePathEn,
   languagePathPt,
+  readingNavigation,
 } = Astro.props;
 
 const locale = language === 'pt' ? 'pt-BR' : 'en-US';
@@ -84,6 +94,7 @@ const dateFormatted = date.toLocaleDateString(locale, {
       <div class="essay-body prose">
         <slot />
       </div>
+      {readingNavigation && <ReadingNavigation {...readingNavigation} />}
     </article>
   </div>
 </BaseLayout>

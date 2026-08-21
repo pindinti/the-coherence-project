@@ -1,0 +1,106 @@
+---
+interface NavigationItem {
+  href: string;
+  title: string;
+}
+
+interface Props {
+  collection: 'essays' | 'articles' | 'journal';
+  language: 'en' | 'pt';
+  backHref: string;
+  previous?: NavigationItem;
+  next?: NavigationItem;
+}
+
+const { collection, language, backHref, previous, next } = Astro.props;
+
+const labels = language === 'pt'
+  ? {
+      essays: 'Voltar para Ensaios',
+      articles: 'Voltar para Artigos',
+      journal: 'Voltar para Diário',
+      previous: '← Anterior',
+      next: 'Próximo →',
+      navigation: 'Navegação de leitura',
+    }
+  : {
+      essays: 'Back to Essays',
+      articles: 'Back to Articles',
+      journal: 'Back to Journal',
+      previous: '← Previous',
+      next: 'Next →',
+      navigation: 'Reading navigation',
+    };
+---
+
+<nav class="reading-navigation" aria-label={labels.navigation}>
+  <a class="reading-navigation__back" href={backHref}>
+    ← {labels[collection]}
+  </a>
+
+  {(previous || next) && (
+    <div class="reading-navigation__adjacent">
+      {previous && (
+        <a href={previous.href}>
+          <span>{labels.previous}</span>
+          <span>{previous.title}</span>
+        </a>
+      )}
+      {next && (
+        <a href={next.href}>
+          <span>{labels.next}</span>
+          <span>{next.title}</span>
+        </a>
+      )}
+    </div>
+  )}
+</nav>
+
+<style>
+  .reading-navigation {
+    margin-top: var(--space-16);
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+  }
+
+  .reading-navigation__back {
+    font-weight: var(--weight-medium);
+  }
+
+  .reading-navigation__adjacent {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-6);
+    margin-top: var(--space-6);
+  }
+
+  .reading-navigation__adjacent a {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .reading-navigation__adjacent a:last-child {
+    margin-left: auto;
+    text-align: right;
+  }
+
+  .reading-navigation__adjacent span:first-child {
+    color: var(--color-text-muted);
+    font-size: var(--text-xs);
+  }
+
+  @media (max-width: 768px) {
+    .reading-navigation__adjacent {
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .reading-navigation__adjacent a:last-child {
+      margin-left: 0;
+      text-align: left;
+    }
+  }
+</style>

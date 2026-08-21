@@ -21,7 +21,7 @@ export async function getStaticPaths() {
       entry.data.language === 'en' &&
       entry.data.type === 'essay' &&
       entry.data.status === 'published',
-  );
+  ).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
   const essaysPt = content.filter(
     (entry) =>
       entry.data.language === 'pt' &&
@@ -29,7 +29,7 @@ export async function getStaticPaths() {
       entry.data.status === 'published',
   );
 
-  return essaysEn.map((essay) => {
+  return essaysEn.map((essay, index) => {
     const slug = essay.id.split('/').pop()!;
 
     // Locate the matching PT translation via translationId
@@ -41,7 +41,22 @@ export async function getStaticPaths() {
 
     return {
       params: { slug },
-      props: { essay, ptSlug },
+      props: {
+        essay,
+        ptSlug,
+        previous: essaysEn[index - 1]
+          ? {
+              href: `/en/essays/${essaysEn[index - 1].id.split('/').pop()!}`,
+              title: essaysEn[index - 1].data.title,
+            }
+          : undefined,
+        next: essaysEn[index + 1]
+          ? {
+              href: `/en/essays/${essaysEn[index + 1].id.split('/').pop()!}`,
+              title: essaysEn[index + 1].data.title,
+            }
+          : undefined,
+      },
     };
   });
 }
@@ -49,9 +64,11 @@ export async function getStaticPaths() {
 interface Props {
   essay: CollectionEntry<'content'>;
   ptSlug?: string;
+  previous?: { href: string; title: string };
+  next?: { href: string; title: string };
 }
 
-const { essay, ptSlug } = Astro.props;
+const { essay, ptSlug, previous, next } = Astro.props;
 const { Content } = await render(essay);
 
 const slug = essay.id.split('/').pop()!;
@@ -71,6 +88,13 @@ const ptPath = ptSlug ? `/ensaios/${ptSlug}` : undefined;
   canonical={essay.data.canonicalUrl ?? enPath}
   languagePathEn={enPath}
   languagePathPt={ptPath ?? '/'}
+  readingNavigation={{
+    collection: 'essays',
+    language: 'en',
+    backHref: '/en/',
+    previous,
+    next,
+  }}
 >
   <Content />
 </EssayLayout>

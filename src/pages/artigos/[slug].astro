@@ -10,7 +10,7 @@ export async function getStaticPaths() {
     entry.data.type === 'article' &&
     entry.data.status === 'published' &&
     entry.data.publicationMode !== 'external'
-  );
+  ).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
   const articlesEn = content.filter((entry) =>
     entry.data.language === 'en' &&
     entry.data.type === 'article' &&
@@ -18,14 +18,29 @@ export async function getStaticPaths() {
     entry.data.publicationMode !== 'external'
   );
 
-  return articlesPt.map((article) => {
+  return articlesPt.map((article, index) => {
     const enMatch = article.data.translationId
       ? articlesEn.find((entry) => entry.data.translationId === article.data.translationId)
       : undefined;
 
     return {
       params: { slug: article.id.split('/').pop()! },
-      props: { article, enSlug: enMatch?.id.split('/').pop() },
+      props: {
+        article,
+        enSlug: enMatch?.id.split('/').pop(),
+        previous: articlesPt[index - 1]
+          ? {
+              href: `/artigos/${articlesPt[index - 1].id.split('/').pop()!}`,
+              title: articlesPt[index - 1].data.title,
+            }
+          : undefined,
+        next: articlesPt[index + 1]
+          ? {
+              href: `/artigos/${articlesPt[index + 1].id.split('/').pop()!}`,
+              title: articlesPt[index + 1].data.title,
+            }
+          : undefined,
+      },
     };
   });
 }
@@ -33,9 +48,11 @@ export async function getStaticPaths() {
 interface Props {
   article: CollectionEntry<'content'>;
   enSlug?: string;
+  previous?: { href: string; title: string };
+  next?: { href: string; title: string };
 }
 
-const { article, enSlug } = Astro.props;
+const { article, enSlug, previous, next } = Astro.props;
 const { Content } = await render(article);
 const slug = article.id.split('/').pop()!;
 const ptPath = `/artigos/${slug}`;
@@ -54,6 +71,13 @@ const enPath = enSlug ? `/en/articles/${enSlug}` : undefined;
   hreflangPt={ptPath}
   languagePathEn={enPath ?? '/en/'}
   languagePathPt={ptPath}
+  readingNavigation={{
+    collection: 'articles',
+    language: 'pt',
+    backHref: '/artigos/',
+    previous,
+    next,
+  }}
 >
   <Content />
 </PublicationLayout>

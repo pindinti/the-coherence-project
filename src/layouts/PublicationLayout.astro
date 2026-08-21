@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import ReadingNavigation from '../components/ReadingNavigation.astro';
 
 interface Props {
   title: string;
@@ -13,6 +14,13 @@ interface Props {
   canonical?: string;
   languagePathEn?: string;
   languagePathPt?: string;
+  readingNavigation?: {
+    collection: 'essays' | 'articles' | 'journal';
+    language: 'en' | 'pt';
+    backHref: string;
+    previous?: { href: string; title: string };
+    next?: { href: string; title: string };
+  };
 }
 
 const {
@@ -27,6 +35,7 @@ const {
   canonical,
   languagePathEn,
   languagePathPt,
+  readingNavigation,
 } = Astro.props;
 
 const dateFormatted = date.toLocaleDateString(language === 'pt' ? 'pt-BR' : 'en-US', {
@@ -60,6 +69,7 @@ const dateFormatted = date.toLocaleDateString(language === 'pt' ? 'pt-BR' : 'en-
       <div class="publication-body prose">
         <slot />
       </div>
+      {readingNavigation && <ReadingNavigation {...readingNavigation} />}
     </article>
   </div>
 </BaseLayout>

@@ -21,7 +21,7 @@ export async function getStaticPaths() {
       entry.data.language === 'pt' &&
       entry.data.type === 'essay' &&
       entry.data.status === 'published',
-  );
+  ).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
   const essaysEn = content.filter(
     (entry) =>
       entry.data.language === 'en' &&
@@ -29,7 +29,7 @@ export async function getStaticPaths() {
       entry.data.status === 'published',
   );
 
-  return essaysPt.map((essay) => {
+  return essaysPt.map((essay, index) => {
     const slug = essay.id.split('/').pop()!;
 
     const enMatch = essay.data.translationId
@@ -40,7 +40,22 @@ export async function getStaticPaths() {
 
     return {
       params: { slug },
-      props: { essay, enSlug },
+      props: {
+        essay,
+        enSlug,
+        previous: essaysPt[index - 1]
+          ? {
+              href: `/ensaios/${essaysPt[index - 1].id.split('/').pop()!}`,
+              title: essaysPt[index - 1].data.title,
+            }
+          : undefined,
+        next: essaysPt[index + 1]
+          ? {
+              href: `/ensaios/${essaysPt[index + 1].id.split('/').pop()!}`,
+              title: essaysPt[index + 1].data.title,
+            }
+          : undefined,
+      },
     };
   });
 }
@@ -48,9 +63,11 @@ export async function getStaticPaths() {
 interface Props {
   essay: CollectionEntry<'content'>;
   enSlug?: string;
+  previous?: { href: string; title: string };
+  next?: { href: string; title: string };
 }
 
-const { essay, enSlug } = Astro.props;
+const { essay, enSlug, previous, next } = Astro.props;
 const { Content } = await render(essay);
 
 const slug = essay.id.split('/').pop()!;
@@ -70,6 +87,13 @@ const enPath = enSlug ? `/en/essays/${enSlug}` : undefined;
   canonical={essay.data.canonicalUrl ?? ptPath}
   languagePathEn={enPath ?? '/en/'}
   languagePathPt={ptPath}
+  readingNavigation={{
+    collection: 'essays',
+    language: 'pt',
+    backHref: '/',
+    previous,
+    next,
+  }}
 >
   <Content />
 </EssayLayout>
