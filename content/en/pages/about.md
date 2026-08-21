@@ -52,7 +52,7 @@ The difference is that now the investigation is open.
 ## A little about me
 
 <div class="profile-introduction">
-<img class="profile-portrait" src="/images/about/paulo-pereira.jpg" alt="Paulo Eduardo Pereira" width="128" height="128">
+<img class="profile-portrait" src="/images/about/paulo-pereira.png" alt="Paulo Eduardo Pereira" width="128" height="128">
 <p>I work across operations, transformation, and product. I started my career in manufacturing, working with quality and continuous improvement, and since then have worked in very different contexts — from the factory floor and process management to technology, consulting, and entrepreneurship.</p>
 </div>
 
