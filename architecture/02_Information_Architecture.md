@@ -7,7 +7,7 @@
 | Version | 0.2 |
 | Status | Draft |
 | Owner | Paulo Eduardo Pereira |
-| Last Updated | 2026-08-03 |
+| Last Updated | 2026-08-24 |
 
 ---
 
@@ -95,6 +95,14 @@ Information about the project, its author and its purpose.
 The focus is credibility and context rather than personal promotion.
 
 About is a **navigational section**, not a knowledge domain — it should not appear in content-type taxonomies (see `03_Content_Strategy.md`).
+
+---
+
+# Home
+
+Home is the project's orientation and map. It presents familiar organizational territory and the space under investigation, then directs readers to Essays, the Journal, Articles and About.
+
+Home does not explain, summarize or anticipate the conceptual reconstruction developed in the Essays. It is a navigational section, not a knowledge domain or an Essay index. Its interface contract is defined in `06_1_UI_Components.md`.
 
 ---
 

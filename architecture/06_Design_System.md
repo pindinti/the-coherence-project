@@ -7,7 +7,7 @@
 | Version | 0.2 |
 | Status | Draft |
 | Owner | Paulo Eduardo Pereira |
-| Last Updated | 2026-08-02 |
+| Last Updated | 2026-08-24 |
 
 ---
 
@@ -233,6 +233,18 @@ Figures should respect the reading experience and remain visually integrated wit
 - On mobile, figures should adapt to the viewport width and keep captions visible without requiring horizontal scrolling.
 
 The design system treats figures as narrative components that support comprehension across devices.
+
+---
+
+# Home Capability Field Diagram
+
+The Home capability field diagram presents familiar organizational territory without explaining the project's conceptual reconstruction. Within the diagram, use only the established restrained black, white and gray language; do not introduce highlight colors, gradients, shadows, icons, decorative illustration, particles, annotations or connecting lines.
+
+The field boundary, Promise and Reality remain static. Promise is anchored on the left inside the field; Reality is positioned on the right outside the field, visually meeting its boundary.
+
+The capability labels Strategy, Operations, Technology, People, Finance, Marketing, Governance, Sales and Legal have exactly equal visual weight: the same typography, size, color and opacity, with no central label, hierarchy, emphasis or implied priority. Their distribution should appear non-ordered.
+
+Capability labels may move autonomously within the field only to indicate that internal configuration is not static. Motion must be extremely slow, small in amplitude, independently timed, unsynchronized and non-interactive, without visible paths or mouse control. It must respect `prefers-reduced-motion`; when reduction is requested, labels remain static.
 
 ---
 

@@ -7,7 +7,7 @@
 | Version | 0.1 |
 | Status | Draft |
 | Owner | Paulo Eduardo Pereira |
-| Last Updated | 2026-08-12 |
+| Last Updated | 2026-08-24 |
 
 ---
 
@@ -23,7 +23,7 @@ Its objective is to establish predictable, SEO-optimized, and clear URLs for con
 
 # URL Principles
 
-1. **Portuguese Default Experience**: Portuguese is the default public language. The root domain (`/`) serves the Portuguese homepage and Portuguese content uses unprefixed localized paths.
+1. **Portuguese Default Experience**: Portuguese is the default public language. The root domain (`/`) serves the Portuguese Home and Portuguese content uses unprefixed localized paths.
 2. **Explicit English Namespace**: English uses the explicit `/en/` namespace. No automatic language detection or redirects are used.
 3. **Localized Slugs**: Slugs and category paths in URLs are localized per language for optimal SEO and reading context.
 4. **Decoupled Physical Structure**: Physical content directories remain uniform in English (`content/en/essays/`, `content/pt/essays/`), while public URLs are translated. The logical collection structure is defined in `10_Content_Model.md`.
@@ -33,11 +33,13 @@ Its objective is to establish predictable, SEO-optimized, and clear URLs for con
 
 # Portuguese Root Strategy (`/`)
 
-The root URL (`/`) is the Portuguese homepage.
+The root URL (`/`) is the Portuguese Home: an orientation and map for the project, rather than an Essay index.
 
 - **No Automatic Geolocation or Browser Redirects**: Users are never forcibly redirected based on IP or browser language headers.
 - **Purpose**: Present Portuguese content and provide a clear language switch to English (`/en/`).
 - **Language Switching**: The Portuguese homepage (`/`) and English homepage (`/en/`) are direct counterparts.
+
+The Portuguese Essays index is `/ensaios/`; the English Essays index is `/en/essays/`. The Home routes remain `/` and `/en/`.
 
 ---
 

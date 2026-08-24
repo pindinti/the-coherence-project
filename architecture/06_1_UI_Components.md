@@ -125,6 +125,71 @@ Prioritize clarity over persuasion.
 
 ---
 
+# Home
+
+## Purpose
+
+Provide an orientation and map for The Coherence Project. Home is a conceptual entry point, not an Essay index and not an explanation of the theory developed in the Essays.
+
+## English Content Structure
+
+The English Home presents the following structure:
+
+> Organizations are built around promises.
+>
+> Promises to customers, employees, partners, investors and themselves.
+>
+> But between what an organization intends to be and what it actually becomes, many things happen:
+>
+> [CAPABILITY FIELD DIAGRAM]
+>
+> The Coherence Project is an ongoing investigation into that space.
+
+It then links to the project's four fronts:
+
+- Essays → thinking
+- Journal → observing
+- Articles → connecting
+- About → point of view
+
+Each front is a navigational link to its respective area. The Home presents recognizable organizational territory; readers discover the project's conceptual reconstruction through the published work.
+
+## Portuguese Content Structure
+
+The Portuguese Home presents the following approved structure:
+
+> # The Coherence Project
+>
+> Organizações são construídas em torno de promessas.
+>
+> Promessas feitas a clientes, pessoas, parceiros, investidores e a si mesmas.
+>
+> Mas, entre aquilo que uma organização pretende ser e aquilo que ela realmente se torna, muita coisa acontece:
+>
+> [DIAGRAMA — CAMPO DE CAPACIDADES]
+>
+> O The Coherence Project é uma investigação contínua sobre esse espaço.
+>
+> Essa investigação acontece em diferentes frentes:
+>
+> Ensaios → pensar
+>
+> Diário → observar
+>
+> Artigos → conectar
+>
+> Sobre → ponto de vista
+
+## Portuguese Capability Field Diagram
+
+The Portuguese poles are Promessa and Realidade. The approved Portuguese capability labels are Estratégia, Operações, Tecnologia, Pessoas, Finanças, Marketing, Governança, Vendas and Jurídico. The visual, equal-weight, motion and accessibility constraints remain defined in `06_Design_System.md`.
+
+## Capability Field Diagram
+
+The Home includes the capability field diagram defined visually and behaviorally in `06_Design_System.md`. Its fixed elements are Promise, anchored on the left inside the field, and Reality, positioned on the right outside the field at its boundary. The diagram contains the organizational capability labels Strategy, Operations, Technology, People, Finance, Marketing, Governance, Sales and Legal.
+
+---
+
 # Content Header
 
 ## Purpose
