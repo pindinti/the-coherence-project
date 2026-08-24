@@ -1,0 +1,186 @@
+---
+import HomeCapabilityField from './HomeCapabilityField.astro';
+
+interface Props {
+  language: 'en' | 'pt';
+}
+
+const { language } = Astro.props;
+const isPortuguese = language === 'pt';
+
+const fronts = isPortuguese
+  ? [
+      { label: 'Ensaios', role: 'pensar', href: '/ensaios/' },
+      { label: 'Diário', role: 'observar', href: '/diario/' },
+      { label: 'Artigos', role: 'conectar', href: '/artigos/' },
+      { label: 'Sobre', role: 'ponto de vista', href: '/sobre' },
+    ]
+  : [
+      { label: 'Essays', role: 'thinking', href: '/en/essays/' },
+      { label: 'Journal', role: 'observing', href: '/en/journal/' },
+      { label: 'Articles', role: 'connecting', href: '/en/articles/' },
+      { label: 'About', role: 'point of view', href: '/en/about' },
+    ];
+---
+
+<main class="home">
+  <header class="home__header">
+    <h1>The Coherence Project</h1>
+  </header>
+
+  <section class="home__copy" aria-labelledby="home-opening">
+    <p id="home-opening" class="home__lead">
+      {isPortuguese
+        ? 'Organizações são construídas em torno de promessas.'
+        : 'Organizations are built around promises.'}
+    </p>
+    <p>
+      {isPortuguese
+        ? 'Promessas feitas a clientes, pessoas, parceiros, investidores e a si mesmas.'
+        : 'Promises to customers, employees, partners, investors and themselves.'}
+    </p>
+    <p>
+      {isPortuguese
+        ? 'Mas, entre aquilo que uma organização pretende ser e aquilo que ela realmente se torna, muita coisa acontece:'
+        : 'But between what an organization intends to be and what it actually becomes, many things happen:'}
+    </p>
+  </section>
+
+  <div class="home__field">
+    <HomeCapabilityField language={language} />
+  </div>
+
+  <section class="home__copy home__investigation">
+    <p>
+      {isPortuguese
+        ? 'O The Coherence Project é uma investigação contínua sobre esse espaço.'
+        : 'The Coherence Project is an ongoing investigation into that space.'}
+    </p>
+    <p>
+      {isPortuguese
+        ? 'Essa investigação acontece em diferentes frentes:'
+        : 'The investigation unfolds across different fronts:'}
+    </p>
+  </section>
+
+  <nav class="home__fronts" aria-label={isPortuguese ? 'Frentes do projeto' : 'Project fronts'}>
+    <ul role="list">
+      {fronts.map((front) => (
+        <li>
+          <a href={front.href}>
+            <span class="home__front-name">{front.label}</span>
+            <span class="home__front-role">→ {front.role}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</main>
+
+<style>
+  .home {
+    width: 100%;
+    max-width: var(--max-width-content);
+    margin-inline: auto;
+    padding: var(--space-16) var(--space-6) var(--space-24);
+  }
+
+  .home__header,
+  .home__copy,
+  .home__fronts {
+    max-width: 50rem;
+  }
+
+  .home__header {
+    margin-bottom: var(--space-16);
+  }
+
+  .home__header h1 {
+    font-size: var(--text-5xl);
+    font-weight: var(--weight-bold);
+    letter-spacing: -0.03em;
+  }
+
+  .home__copy {
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    line-height: var(--leading-loose);
+  }
+
+  .home__lead {
+    font-size: var(--text-2xl);
+    line-height: var(--leading-relaxed);
+  }
+
+  .home__field {
+    margin: var(--space-16) 0;
+  }
+
+  .home__investigation {
+    margin-bottom: var(--space-12);
+  }
+
+  .home__fronts ul {
+    list-style: none;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .home__fronts li {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .home__fronts a {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-4);
+    padding: var(--space-5) 0;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: opacity var(--transition-fast);
+  }
+
+  .home__fronts a:hover {
+    color: var(--color-text-primary);
+    opacity: 0.65;
+  }
+
+  .home__front-name {
+    font-weight: var(--weight-semibold);
+  }
+
+  .home__front-role {
+    color: var(--color-text-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .home {
+      padding: var(--space-8) var(--space-4) var(--space-16);
+      overflow-x: clip;
+    }
+
+    .home__header {
+      margin-bottom: var(--space-12);
+    }
+
+    .home__header h1 {
+      font-size: var(--text-3xl);
+    }
+
+    .home__copy {
+      font-size: var(--text-lg);
+      line-height: var(--leading-relaxed);
+    }
+
+    .home__lead {
+      font-size: var(--text-xl);
+    }
+
+    .home__field {
+      margin: var(--space-12) 0;
+    }
+
+    .home__fronts a {
+      grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+    }
+  }
+</style>

@@ -17,15 +17,16 @@ const {
 
 const isEnglish = currentLanguage === 'en';
 const pathname = Astro.url.pathname;
+const isHome = pathname === '/' || pathname === '/en/';
 const navigation = isEnglish
   ? [
-      { label: 'Essays', href: '/en/', active: pathname === '/en/' || pathname.startsWith('/en/essays/') },
+      { label: 'Essays', href: '/en/essays/', active: pathname.startsWith('/en/essays/') },
       { label: 'Articles', href: '/en/articles/', active: pathname.startsWith('/en/articles/') },
       { label: 'Journal', href: '/en/journal/', active: pathname.startsWith('/en/journal/') },
       { label: 'About', href: '/en/about', active: pathname === '/en/about' || pathname === '/en/about/' },
     ]
   : [
-      { label: 'Ensaios', href: '/', active: pathname === '/' || pathname.startsWith('/ensaios/') },
+      { label: 'Ensaios', href: '/ensaios/', active: pathname.startsWith('/ensaios/') },
       { label: 'Artigos', href: '/artigos/', active: pathname.startsWith('/artigos/') },
       { label: 'Diário', href: '/diario/', active: pathname.startsWith('/diario/') },
       { label: 'Sobre', href: '/sobre', active: pathname === '/sobre' || pathname === '/sobre/' },
@@ -34,7 +35,7 @@ const navigation = isEnglish
 
 <header class="site-header">
   <div class="site-header__inner">
-    <a class="site-header__identity" href={homePath}>
+    <a class="site-header__identity" href={homePath} aria-current={isHome ? 'page' : undefined}>
       The Coherence Project
     </a>
 

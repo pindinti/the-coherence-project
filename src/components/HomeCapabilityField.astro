@@ -1,0 +1,252 @@
+---
+interface Props {
+  language: 'en' | 'pt';
+}
+
+const { language } = Astro.props;
+
+const isPortuguese = language === 'pt';
+const promise = isPortuguese ? 'Promessa' : 'Promise';
+const reality = isPortuguese ? 'Realidade' : 'Reality';
+const caption = isPortuguese ? 'Campo de capacidades' : 'Capability field';
+const capabilities = isPortuguese
+  ? [
+      'Estratégia',
+      'Operações',
+      'Tecnologia',
+      'Pessoas',
+      'Finanças',
+      'Marketing',
+      'Governança',
+      'Vendas',
+      'Jurídico',
+    ]
+  : [
+      'Strategy',
+      'Operations',
+      'Technology',
+      'People',
+      'Finance',
+      'Marketing',
+      'Governance',
+      'Sales',
+      'Legal',
+    ];
+---
+
+<figure class="capability-field">
+  <figcaption class="sr-only">{caption}</figcaption>
+  <div class="capability-field__boundary">
+    <span class="capability-field__pole capability-field__promise">{promise}</span>
+    <div class="capability-field__labels">
+      {capabilities.map((capability) => (
+        <span class="capability-field__label">{capability}</span>
+      ))}
+    </div>
+  </div>
+  <span class="capability-field__pole capability-field__reality">{reality}</span>
+</figure>
+
+<style>
+  .capability-field {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    width: 100%;
+    max-width: 60rem;
+    margin: 0;
+  }
+
+  .capability-field__boundary {
+    position: relative;
+    min-width: 0;
+    min-height: 28rem;
+    overflow: hidden;
+    border: 1px solid var(--color-border-strong);
+    border-radius: 3rem 4.25rem 3.5rem 4rem / 2.75rem 3rem 3.25rem 2.5rem;
+    background-color: var(--color-surface-muted);
+  }
+
+  .capability-field__pole {
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    line-height: var(--leading-normal);
+    white-space: nowrap;
+  }
+
+  .capability-field__promise {
+    position: absolute;
+    top: 47%;
+    left: var(--space-6);
+    z-index: 1;
+    transform: translateY(-50%);
+  }
+
+  .capability-field__reality {
+    margin-left: var(--space-3);
+  }
+
+  .capability-field__labels {
+    position: absolute;
+    inset: 0;
+  }
+
+  .capability-field__label {
+    position: absolute;
+    color: var(--color-text-secondary);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-normal);
+    line-height: var(--leading-normal);
+    opacity: 1;
+    white-space: nowrap;
+    animation-name: capability-drift;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+
+  .capability-field__label:nth-child(1) {
+    top: 17%;
+    left: 24%;
+    --drift-mid-x: 10px;
+    --drift-mid-y: -8px;
+    --drift-end-x: -6px;
+    --drift-end-y: 9px;
+    animation-duration: 34s;
+    animation-delay: -17s;
+  }
+
+  .capability-field__label:nth-child(2) {
+    top: 11%;
+    left: 54%;
+    --drift-mid-x: -12px;
+    --drift-mid-y: 7px;
+    --drift-end-x: 8px;
+    --drift-end-y: 10px;
+    animation-duration: 41s;
+    animation-delay: -39s;
+  }
+
+  .capability-field__label:nth-child(3) {
+    top: 25%;
+    left: 78%;
+    --drift-mid-x: 9px;
+    --drift-mid-y: 12px;
+    --drift-end-x: -11px;
+    --drift-end-y: -6px;
+    animation-duration: 29s;
+    animation-delay: -8s;
+  }
+
+  .capability-field__label:nth-child(4) {
+    top: 36%;
+    left: 39%;
+    --drift-mid-x: -8px;
+    --drift-mid-y: -11px;
+    --drift-end-x: 12px;
+    --drift-end-y: 5px;
+    animation-duration: 44s;
+    animation-delay: -44s;
+  }
+
+  .capability-field__label:nth-child(5) {
+    top: 45%;
+    left: 70%;
+    --drift-mid-x: 14px;
+    --drift-mid-y: -7px;
+    --drift-end-x: -9px;
+    --drift-end-y: 9px;
+    animation-duration: 37s;
+    animation-delay: -26s;
+  }
+
+  .capability-field__label:nth-child(6) {
+    top: 59%;
+    left: 22%;
+    --drift-mid-x: 8px;
+    --drift-mid-y: 13px;
+    --drift-end-x: -12px;
+    --drift-end-y: 6px;
+    animation-duration: 32s;
+    animation-delay: -51s;
+  }
+
+  .capability-field__label:nth-child(7) {
+    top: 66%;
+    left: 51%;
+    --drift-mid-x: -13px;
+    --drift-mid-y: 9px;
+    --drift-end-x: 6px;
+    --drift-end-y: -10px;
+    animation-duration: 45s;
+    animation-delay: -31s;
+  }
+
+  .capability-field__label:nth-child(8) {
+    top: 74%;
+    left: 80%;
+    --drift-mid-x: 10px;
+    --drift-mid-y: -12px;
+    --drift-end-x: -8px;
+    --drift-end-y: -8px;
+    animation-duration: 39s;
+    animation-delay: -12s;
+  }
+
+  .capability-field__label:nth-child(9) {
+    top: 86%;
+    left: 38%;
+    --drift-mid-x: -9px;
+    --drift-mid-y: -14px;
+    --drift-end-x: 13px;
+    --drift-end-y: 4px;
+    animation-duration: 28s;
+    animation-delay: -36s;
+  }
+
+  @keyframes capability-drift {
+    0%,
+    100% {
+      transform: translate(-50%, -50%);
+    }
+
+    33% {
+      transform: translate(
+        calc(-50% + var(--drift-mid-x)),
+        calc(-50% + var(--drift-mid-y))
+      );
+    }
+
+    68% {
+      transform: translate(
+        calc(-50% + var(--drift-end-x)),
+        calc(-50% + var(--drift-end-y))
+      );
+    }
+  }
+
+  @media (max-width: 768px) {
+    .capability-field__boundary {
+      min-height: 25rem;
+    }
+
+    .capability-field__pole,
+    .capability-field__label {
+      font-size: var(--text-xs);
+    }
+
+    .capability-field__promise {
+      left: var(--space-4);
+    }
+
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .capability-field__label {
+      animation: none;
+      transform: translate(-50%, -50%);
+    }
+  }
+</style>

@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import EssayIndex from '../../../components/EssayIndex.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const essays = (await getCollection('content'))
+  .filter(
+    (entry) =>
+      entry.data.language === 'en' &&
+      entry.data.type === 'essay' &&
+      entry.data.status === 'published',
+  )
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<BaseLayout
+  title="Essays — The Coherence Project"
+  description="Essays, articles and research notes on organizational coherence, strategy, and capability."
+  lang="en"
+  hreflangEn="/en/essays/"
+  hreflangPt="/ensaios/"
+  canonical="/en/essays/"
+  languagePathEn="/en/essays/"
+  languagePathPt="/ensaios/"
+>
+  <EssayIndex essays={essays} language="en" />
+</BaseLayout>
