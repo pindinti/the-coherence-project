@@ -7,7 +7,7 @@
 | Version | 0.1 |
 | Status | Draft |
 | Owner | Paulo Eduardo Pereira |
-| Last Updated | 2026-08-12 |
+| Last Updated | 2026-08-24 |
 
 ---
 
@@ -190,6 +190,15 @@ Articles indexes may contain both internal and external items. Their
 presentation must make the destination type understandable before selection,
 without introducing separate indexes, filters, categories, or additional
 taxonomy.
+
+External Articles with the optional `externalImage` field defined in
+`10_Content_Model.md` may use a restrained image-and-text presentation in the
+Articles index. The image should support the identity of the external
+publication without dominating the content; source attribution remains
+visible. The whole item may remain the external destination. When no image is
+provided, the existing text-only presentation remains valid. This treatment
+must preserve the publication-like visual language and avoid card shadows,
+decorative borders, badges, or marketing-style presentation.
 
 ---
 

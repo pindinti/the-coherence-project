@@ -33,6 +33,7 @@ const locale = language === 'pt' ? 'pt-BR' : 'en-US';
           const isExternal =
             entry.data.type === 'article' &&
             entry.data.publicationMode === 'external';
+          const externalImage = isExternal ? entry.data.externalImage : undefined;
           const href = isExternal
             ? entry.data.externalUrl!
             : `${internalBasePath}/${slug}`;
@@ -52,20 +53,30 @@ const locale = language === 'pt' ? 'pt-BR' : 'en-US';
                 target={isExternal ? '_blank' : undefined}
                 rel={isExternal ? 'noopener noreferrer' : undefined}
               >
-                <article>
-                  {isExternal && (
-                    <span class="publication-source">{externalLabel}</span>
+                <article class={externalImage ? 'publication-entry--with-image' : undefined}>
+                  {externalImage && (
+                    <img
+                      class="publication-entry__image"
+                      src={externalImage}
+                      alt={entry.data.title}
+                      loading="lazy"
+                    />
                   )}
-                  <h2>{entry.data.title}</h2>
-                  {entry.data.subtitle && <p class="publication-subtitle">{entry.data.subtitle}</p>}
-                  <p class="publication-description">{entry.data.description}</p>
-                  <time datetime={entry.data.date.toISOString()}>
-                    {entry.data.date.toLocaleDateString(locale, {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                    })}
-                  </time>
+                  <div class={externalImage ? 'publication-entry__content' : undefined}>
+                    {isExternal && (
+                      <span class="publication-source">{externalLabel}</span>
+                    )}
+                    <h2>{entry.data.title}</h2>
+                    {entry.data.subtitle && <p class="publication-subtitle">{entry.data.subtitle}</p>}
+                    <p class="publication-description">{entry.data.description}</p>
+                    <time datetime={entry.data.date.toISOString()}>
+                      {entry.data.date.toLocaleDateString(locale, {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      })}
+                    </time>
+                  </div>
                 </article>
               </a>
             </li>
@@ -127,6 +138,19 @@ const locale = language === 'pt' ? 'pt-BR' : 'en-US';
     letter-spacing: 0.05em;
   }
 
+  .publication-entry--with-image {
+    display: grid;
+    grid-template-columns: minmax(0, 12rem) minmax(0, 1fr);
+    gap: var(--space-6);
+    align-items: start;
+  }
+
+  .publication-entry__image {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
   .publication-link h2 {
     margin-bottom: var(--space-2);
     font-size: var(--text-2xl);
@@ -172,6 +196,10 @@ const locale = language === 'pt' ? 'pt-BR' : 'en-US';
 
     .publication-link h2 {
       font-size: var(--text-xl);
+    }
+
+    .publication-entry--with-image {
+      grid-template-columns: 1fr;
     }
   }
 </style>

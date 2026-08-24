@@ -13,4 +13,7 @@ status: published
 publicationMode: external
 externalUrl: https://sebraepr.com.br/comunidade/artigo/por-que-empresas-bem-administradas-ainda-perdem-espaco-no-mercado
 externalPublication: Sebrae/PR
+externalImage: "/images/articles/article1_image.png"
 ---
+
+

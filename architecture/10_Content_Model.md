@@ -7,7 +7,7 @@
 | Version | 0.1 |
 | Status | Draft |
 | Owner | Paulo Eduardo Pereira |
-| Last Updated | 2026-08-12 |
+| Last Updated | 2026-08-24 |
 
 ---
 
@@ -43,6 +43,8 @@ In Markdown, assets are referenced from the public path. Example:
 ```
 
 When the same image is identical across languages, prefer a single shared asset in `public/images/shared/` instead of duplicating it in parallel content folders.
+
+Optional editorial images for external Articles are stored locally under `public/images/articles/<publication-or-context>/`, for example `/images/articles/sebrae/article-image.jpg`. They represent the external publication context; they must not be fetched dynamically or inferred from external Open Graph metadata.
 
 ---
 
@@ -117,6 +119,7 @@ canonicalUrl: "https://paulopereira.net.br/en/essays/nature-of-organizational-co
 | `publicationMode` | Enum (`internal`, `external`) | No; Articles only | Article delivery mode. Omitted article values default to `internal`. Not applicable to other content types. |
 | `externalUrl` | URL | Conditional; external Articles only | Original-publication URL to which readers are sent. |
 | `externalPublication` | String | No; external Articles only | Identifies the original publication, for example `Sebrae/PR`. |
+| `externalImage` | String | No; external Articles only | Local public path to an optional editorial image representing the external publication context. |
 
 ## Article Publication Modes
 
@@ -132,9 +135,11 @@ canonical collection:
 canonical URL override: `canonicalUrl` continues to identify the URL search
 engines should treat as canonical and is set independently when appropriate.
 
+`externalImage` is optional and intended only for externally published Articles. It must reference a locally stored asset under `public/images/`; it does not alter `externalUrl` or `canonicalUrl`. When omitted, the Article remains valid with its existing text-only presentation.
+
 ## Validation Rules
 
-- `publicationMode`, `externalUrl`, and `externalPublication` apply only when
+- `publicationMode`, `externalUrl`, `externalPublication`, and `externalImage` apply only when
   `type` is `article`.
 - An article with `publicationMode: external` must provide `externalUrl`.
 - `externalPublication`, when provided, identifies the original publication.
@@ -174,11 +179,13 @@ const contentSchema = z.object({
   publicationMode: z.enum(['internal', 'external']).optional(),
   externalUrl: z.string().url().optional(),
   externalPublication: z.string().optional(),
+  externalImage: z.string().optional(),
 }).superRefine((data, ctx) => {
   const hasArticlePublicationMetadata =
     data.publicationMode !== undefined ||
     data.externalUrl !== undefined ||
-    data.externalPublication !== undefined;
+    data.externalPublication !== undefined ||
+    data.externalImage !== undefined;
 
   if (data.type !== 'article' && hasArticlePublicationMetadata) {
     ctx.addIssue({

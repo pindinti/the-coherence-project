@@ -38,11 +38,13 @@ const contentSchema = z.object({
   publicationMode: z.enum(['internal', 'external']).optional(),
   externalUrl: z.string().url().optional(),
   externalPublication: z.string().optional(),
+  externalImage: z.string().startsWith('/images/').optional(),
 }).superRefine((data, ctx) => {
   const hasArticlePublicationMetadata =
     data.publicationMode !== undefined ||
     data.externalUrl !== undefined ||
-    data.externalPublication !== undefined;
+    data.externalPublication !== undefined ||
+    data.externalImage !== undefined;
 
   if (data.type !== 'article' && hasArticlePublicationMetadata) {
     ctx.addIssue({
